@@ -1,0 +1,53 @@
+spring:
+  # database Setting
+  datasource:
+    driver-class-name: ${DB_DRIVER}
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  # mail setting
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_ADDRESS}
+    password: ${EMAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          timeout: 5000
+          writetimeout: 5000
+          connectiontimeout: 5000
+
+  # Redis setting
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+
+cloud:
+  aws:
+    bucket-name: ${AWS_BUCKET_NAME}
+    stack:
+      auto: false
+    credentials:
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
+
+jwt:
+  prefix: ${JWT_PREFIX}
+  header: ${JWT_HEADER}
+  secret: ${JWT_SECRET}
+  access-expire-time: ${JWT_ACCESS_TIME}
+  refresh-expire-time: ${JWT_REFRESH_TIME}

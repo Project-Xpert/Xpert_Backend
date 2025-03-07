@@ -1,0 +1,6 @@
+rootProject.name = 'Striker_Backend'
+include 'striker_core'
+include 'striker_infrastructure'
+include 'striker_persistence'
+include 'striker_presentation'
+
