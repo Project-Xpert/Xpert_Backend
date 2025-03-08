@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class StrikerApplication {
+public class XpertApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StrikerApplication.class, args);
+        SpringApplication.run(XpertApplication.class, args);
     }
 }

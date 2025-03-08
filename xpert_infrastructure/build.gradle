@@ -10,9 +10,9 @@ repositories {
 }
 
 dependencies {
-    implementation project(":striker_core")
-    implementation project(":striker_persistence")
-    implementation project(":striker_presentation")
+    implementation project(":xpert_core")
+    implementation project(":xpert_persistence")
+    implementation project(":xpert_presentation")
 
     // jwt
     implementation 'io.jsonwebtoken:jjwt-api:0.10.7'
