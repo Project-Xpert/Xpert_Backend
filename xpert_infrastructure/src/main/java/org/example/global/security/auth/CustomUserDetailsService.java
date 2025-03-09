@@ -1,8 +1,20 @@
 package org.example.global.security.auth;
 
+import lombok.RequiredArgsConstructor;
+import org.example.domain.user.exception.UserNotFoundException;
+import org.example.domain.user.spi.QueryUserPort;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
 public class CustomUserDetailsService {
+    private final QueryUserPort queryUserPort;
 
     public CustomUserDetails getUserDetailsByUserId(String userId) {
-        return null; // todo: queryUserPort 완성시 여기 코딩 추가로 하기
+        if (!queryUserPort.checkUserExistsByUserId(userId)) {
+            throw UserNotFoundException.EXCEPTION;
+        }
+
+        return new CustomUserDetails(userId);
     }
 }

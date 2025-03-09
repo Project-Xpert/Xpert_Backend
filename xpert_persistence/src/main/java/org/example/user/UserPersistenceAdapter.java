@@ -21,4 +21,9 @@ public class UserPersistenceAdapter implements QueryUserPort {
                 userJpaRepository.findById(userId)
         );
     }
+
+    @Override
+    public Boolean checkUserExistsByUserId(String userId) {
+        return userJpaRepository.existsById(userId);
+    }
 }
