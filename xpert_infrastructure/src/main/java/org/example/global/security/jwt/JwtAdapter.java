@@ -4,9 +4,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.example.common.service.JwtService;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
+@Service
 @RequiredArgsConstructor
 public class JwtAdapter implements JwtService {
     private final JwtProperties jwtProperties;
