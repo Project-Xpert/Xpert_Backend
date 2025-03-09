@@ -49,5 +49,5 @@ jwt:
   prefix: ${JWT_PREFIX}
   header: ${JWT_HEADER}
   secret: ${JWT_SECRET}
-  access-expire-time: ${JWT_ACCESS_TIME}
-  refresh-expire-time: ${JWT_REFRESH_TIME}
+  access_time: ${JWT_ACCESS_TIME}
+  refresh_time: ${JWT_REFRESH_TIME}
