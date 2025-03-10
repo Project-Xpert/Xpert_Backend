@@ -9,4 +9,8 @@ public interface QueryUserPort {
     Optional<User> getUserByUserId(String userId);
 
     Boolean checkUserExistsByUserId(String userId);
+
+    Boolean checkUserExistsByEmail(String email);
+
+    void save(User user);
 }

@@ -8,8 +8,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Getter
+@DynamicInsert
+@DynamicUpdate
 @Entity(name = "user")
 @AllArgsConstructor
 @RequiredArgsConstructor(access = AccessLevel.PROTECTED)
@@ -18,7 +22,7 @@ public class UserJpaEntity {
     @Column(columnDefinition = "VARCHAR(20)", nullable = false)
     private String userId;
 
-    @Column(columnDefinition = "VARCHAR(15)", nullable = false, unique = true)
+    @Column(columnDefinition = "VARCHAR(25)", nullable = false, unique = true)
     private String email;
 
     @Column(columnDefinition = "VARCHAR(15)", nullable = false)

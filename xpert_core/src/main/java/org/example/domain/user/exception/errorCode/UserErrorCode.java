@@ -1,11 +1,13 @@
-package org.example.domain.user.exception;
+package org.example.domain.user.exception.errorCode;
 
 import lombok.RequiredArgsConstructor;
 import org.example.common.exception.GlobalErrorCode;
 
 @RequiredArgsConstructor
 public enum UserErrorCode implements GlobalErrorCode {
-    USER_NOT_FOUND(404, "유저를 찾지 못했습니다");
+    USER_NOT_FOUND(404, "유저를 찾지 못했습니다"),
+    USER_ID_ALREADY_EXISTS(409, "이미 해당 아이디로 가입된 유저가 존재합니다"),
+    EMAIL_ALREADY_EXISTS(409, "이미 해당 이메일로 가입된 유저가 존재합니다");
 
     private final int errorCode;
     private final String errorMessage;

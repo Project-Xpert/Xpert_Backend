@@ -11,7 +11,9 @@ import org.example.global.security.exception.InvalidTokenException;
 import org.example.global.security.exception.TokenExpiredException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
+@Component
 @RequiredArgsConstructor
 public class JwtParser {
     private final JwtProperties jwtProperties;

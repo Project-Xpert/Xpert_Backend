@@ -18,4 +18,13 @@ public record ErrorResponse (
                 LocalDateTime.now()
         );
     }
+
+    public static ErrorResponse of(GlobalErrorCode e, String description) {
+        return new ErrorResponse(
+                e.getErrorCode(),
+                e.getErrorMessage(),
+                description,
+                LocalDateTime.now()
+        );
+    }
 }

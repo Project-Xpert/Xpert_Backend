@@ -26,4 +26,16 @@ public class UserPersistenceAdapter implements QueryUserPort {
     public Boolean checkUserExistsByUserId(String userId) {
         return userJpaRepository.existsById(userId);
     }
+
+    @Override
+    public Boolean checkUserExistsByEmail(String email) {
+        return userJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public void save(User user) {
+        userJpaRepository.save(
+                userMapper.toEntity(user)
+        );
+    }
 }
