@@ -6,7 +6,8 @@ import org.example.common.exception.GlobalErrorCode;
 @RequiredArgsConstructor
 public enum SecurityErrorCode implements GlobalErrorCode {
     INVALID_TOKEN(401, "유효하지 않은 토큰입니다"),
-    TOKEN_EXPIRED(401, "토큰이 만료되었습니다");
+    TOKEN_EXPIRED(401, "토큰이 만료되었습니다"),
+    PASSWORD_MISMATCHES(401, "비밀번호가 불일치합니다");
 
     private final int errorCode;
     private final String errorMessage;
