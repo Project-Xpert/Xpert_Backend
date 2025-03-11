@@ -1,7 +1,8 @@
-package org.example.common.exception;
+package org.example.common.exception.general;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.common.exception.GlobalErrorCode;
 
 @RequiredArgsConstructor
 public enum GeneralExceptionCode implements GlobalErrorCode {

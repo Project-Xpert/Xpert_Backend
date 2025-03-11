@@ -1,6 +1,6 @@
 package org.example.global.exception;
 
-import org.example.common.exception.GeneralExceptionCode;
+import org.example.common.exception.general.GeneralExceptionCode;
 import org.example.common.exception.GlobalBusinessException;
 import org.example.common.exception.GlobalErrorCode;
 import org.springframework.http.HttpStatusCode;
