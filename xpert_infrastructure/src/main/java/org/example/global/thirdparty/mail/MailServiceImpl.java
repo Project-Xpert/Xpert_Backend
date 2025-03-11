@@ -30,7 +30,7 @@ public class MailServiceImpl implements MailService {
         try {
             MimeMessage message = javaMailSender.createMimeMessage();
             message.addRecipients(MimeMessage.RecipientType.TO, requestMail);
-            message.setSubject("Helper 인증번호입니다");
+            message.setSubject("Xpert 인증번호입니다");
             message.setFrom(senderMail);
             message.setText(setContext(content), "utf-8", "html");
 
@@ -49,7 +49,7 @@ public class MailServiceImpl implements MailService {
 
     private String setContext(String code) {
         return "<div style='font-size:16px; font-family:Arial, sans-serif;'>" +
-                "RandCS 인증번호입니다: <strong>" + code + "</strong>" +
+                "Xpert 인증번호입니다: <strong>" + code + "</strong>" +
                 "</div>";
     }
 }
