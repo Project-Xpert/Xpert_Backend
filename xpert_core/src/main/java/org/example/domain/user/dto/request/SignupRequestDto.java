@@ -7,7 +7,6 @@ public record SignupRequestDto(
         @NotBlank @Length(max = 20, min = 3) String userId,
         @NotBlank @Length(max = 25) String email,
         @NotBlank @Length(max = 15, min = 3)  String username,
-        @NotBlank String password,
-        String profile
+        @NotBlank String password
 ) {
 }

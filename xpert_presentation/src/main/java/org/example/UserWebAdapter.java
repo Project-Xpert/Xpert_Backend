@@ -7,6 +7,7 @@ import org.example.domain.user.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/user")
@@ -20,8 +21,11 @@ public class UserWebAdapter {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
-    public void signup(@Validated @RequestBody SignupRequestDto request) {
-        signupUseCase.execute(request);
+    public void signup(
+            @RequestPart(value = "file", required = false) MultipartFile file,
+            @Validated @RequestPart(value = "body") SignupRequestDto request
+    ) {
+        signupUseCase.execute(request, file);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
