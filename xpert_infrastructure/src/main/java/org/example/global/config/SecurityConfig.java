@@ -39,7 +39,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/user/signup").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/attribute").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user/mail/code").permitAll();
+                        .requestMatchers(HttpMethod.POST, "/user/mail/code").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/user/verify/code").permitAll();
 
                     authorization
                         .anyRequest().denyAll();

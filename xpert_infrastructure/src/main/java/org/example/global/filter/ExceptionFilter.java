@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.common.exception.GlobalBusinessException;
 import org.example.common.exception.general.GeneralExceptionCode;
 import org.example.common.exception.GlobalErrorCode;
 import org.example.global.exception.ErrorResponse;
@@ -22,6 +23,8 @@ public class ExceptionFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException {
         try {
             filterChain.doFilter(request, response);
+        } catch (GlobalBusinessException e) {
+            convertErrorToJson(response, e.errorCode);
         } catch (Exception e) {
             log.error(e.getMessage());
             convertErrorToJson(response, GeneralExceptionCode.INTERNAL_SERVER_ERROR);

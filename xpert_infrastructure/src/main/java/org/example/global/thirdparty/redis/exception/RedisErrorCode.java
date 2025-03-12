@@ -12,11 +12,11 @@ public enum RedisErrorCode implements GlobalErrorCode {
 
     @Override
     public int getErrorCode() {
-        return 0;
+        return errorCode;
     }
 
     @Override
     public String getErrorMessage() {
-        return null;
+        return errorMessage;
     }
 }
