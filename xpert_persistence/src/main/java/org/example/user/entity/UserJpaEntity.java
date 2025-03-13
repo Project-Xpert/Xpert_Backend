@@ -31,7 +31,7 @@ public class UserJpaEntity {
     @Column(columnDefinition = "VARCHAR(225)", nullable = false)
     private String password;
 
-    @ColumnDefault("'BASE_PROFILE_URL'")
+    @ColumnDefault("'https://randcs-bucket.s3.ap-northeast-2.amazonaws.com/c2669a30-d649-40b6-9dbf-b3775724a82b'")
     @Column(columnDefinition = "VARCHAR(200)", nullable = false)
     private String profile;
 

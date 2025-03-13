@@ -25,7 +25,10 @@ public class SignupUseCase {
         checkUserService.checkUserAlreadyExistsByEmail(request.email());
 
         String encryptedPassword = securityService.encryptPassword(request.password());
-        String fileUrl = fileService.uploadFile(file);
+        String fileUrl = null;
+        if (file != null) {
+            fileUrl = fileService.uploadFile(file);
+        }
 
         commandUserService.saveUser(User.builder()
                 .userId(request.userId())
