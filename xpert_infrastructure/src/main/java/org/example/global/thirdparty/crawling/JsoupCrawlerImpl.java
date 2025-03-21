@@ -2,6 +2,8 @@ package org.example.global.thirdparty.crawling;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.common.crawler.JsoupCrawler;
+import org.example.common.exception.general.InternalServerException;
+import org.example.domain.news.dto.response.GetNewsDetailResponseDto;
 import org.example.domain.news.dto.response.GetNewsListResponseDto;
 import org.example.domain.news.dto.vo.BasicNewsVO;
 import org.example.domain.news.dto.vo.HeadlineNewsVO;
@@ -52,6 +54,35 @@ public class JsoupCrawlerImpl implements JsoupCrawler {
             result = new GetNewsListResponseDto(headlineNewsVOList, basicNewsVOList);
         } catch(Exception e) {
             log.error(e.getMessage());
+            throw InternalServerException.EXCEPTION;
+        }
+
+        return result;
+    }
+
+    @Override
+    public GetNewsDetailResponseDto NaverNewsDetailCrawling(String url) {
+        GetNewsDetailResponseDto result = null;
+        Connection connection = Jsoup.connect(url);
+
+        try {
+            Document document = connection.get();
+            String newsBody = document.select("#dic_area").html()
+                    .replaceAll("(?s)<(div|span)[^>]*>.*?</\\1>", "")
+                    .replaceAll("&.*?;", "")
+                    .replaceAll("<.*?>", "")
+                    .trim();
+
+            result = GetNewsDetailResponseDto.builder()
+                    .title(document.select("#title_area span").text())
+                    .imageUrl(document.select("#img1").attr("data-src"))
+                    .company(document.select(".c_text").text().split(" ")[2].replace(".", ""))
+                    .time(document.select("._ARTICLE_DATE_TIME").text())
+                    .contents(newsBody)
+                    .build();
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw InternalServerException.EXCEPTION;
         }
 
         return result;
