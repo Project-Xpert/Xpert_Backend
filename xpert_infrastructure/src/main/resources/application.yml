@@ -51,3 +51,8 @@ jwt:
   secret: ${JWT_SECRET}
   access_time: ${JWT_ACCESS_TIME}
   refresh_time: ${JWT_REFRESH_TIME}
+
+openAPI:
+  news:
+    client_id: ${NEWS_CLIENT_ID}
+    client_secret: ${NEWS_CLIENT_SECRET}

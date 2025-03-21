@@ -43,6 +43,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/user/verify/code").permitAll();
 
                     authorization
+                        .requestMatchers(HttpMethod.GET, "/news/list").permitAll();
+
+                    authorization
                         .anyRequest().denyAll();
                 })
 
