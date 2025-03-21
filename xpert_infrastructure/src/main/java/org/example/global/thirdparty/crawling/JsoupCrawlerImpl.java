@@ -113,7 +113,6 @@ public class JsoupCrawlerImpl implements JsoupCrawler {
                                 .title(element.select(".sa_text_strong").text().trim())
                                 .link(element.select("a").attr("href").trim().trim())
                                 .company(element.select(".sa_text_press").text().trim())
-                                .time(element.select(".sa_text_datetime.is_recent").text().trim())
                                 .imageUrl(imageUrl)
                                 .build()
                 );

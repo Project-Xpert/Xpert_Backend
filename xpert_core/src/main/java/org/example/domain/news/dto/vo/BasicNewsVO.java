@@ -7,6 +7,5 @@ public record BasicNewsVO (
         String imageUrl,
         String title,
         String link,
-        String company,
-        String time
+        String company
 ) { }
