@@ -7,6 +7,7 @@ import org.example.domain.news.dto.response.GetNewsDetailResponseDto;
 import org.example.domain.news.dto.response.GetNewsListResponseDto;
 import org.example.domain.news.dto.vo.BasicNewsVO;
 import org.example.domain.news.dto.vo.HeadlineNewsVO;
+import org.example.domain.news.dto.vo.ImageDataVO;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,7 +16,9 @@ import org.jsoup.select.Elements;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -65,20 +68,36 @@ public class JsoupCrawlerImpl implements JsoupCrawler {
         GetNewsDetailResponseDto result = null;
         Connection connection = Jsoup.connect(url);
 
+        String newsImageRegexp = "(?s)<span[^>]*>\\s*<div[^>]*>.*?<div[^>]*>.*?<img[^>]*?>.*?</div>.*?</div>.*?</span>";
+
         try {
             Document document = connection.get();
-            String newsBody = document.select("#dic_area").html()
-                    .replaceAll("(?s)<(div|span)[^>]*>.*?</\\1>", "")
+            String newsBody = Arrays.stream(document.select("#dic_area").html()
                     .replaceAll("&.*?;", "")
-                    .replaceAll("<.*?>", "")
-                    .trim();
+                    .replaceAll(newsImageRegexp, " img_section ")
+                    .replaceAll("<br/+>", "")
+                    .replaceAll("(?s)<.*?>", "")
+                    .split("\n"))
+                    .filter(string -> !string.isBlank())
+                    .map(String::trim)
+                    .collect(Collectors.joining("\n\n"));
+
+            List<ImageDataVO> imageDataVOList = new ArrayList<>();
+            Elements imageElements = document.select(".end_photo_org");
+            for (Element imageData: imageElements) {
+                imageDataVOList.add(ImageDataVO.builder()
+                        .link(imageData.select("img").attr("data-src"))
+                        .description(imageData.select(".img_desc").text())
+                        .build()
+                );
+            }
 
             result = GetNewsDetailResponseDto.builder()
                     .title(document.select("#title_area span").text())
-                    .imageUrl(document.select("#img1").attr("data-src"))
                     .company(document.select(".c_text").text().split(" ")[2].replace(".", ""))
                     .time(document.select("._ARTICLE_DATE_TIME").text())
                     .contents(newsBody)
+                    .imageData(imageDataVOList)
                     .build();
         } catch (Exception e) {
             log.error(e.getMessage());
