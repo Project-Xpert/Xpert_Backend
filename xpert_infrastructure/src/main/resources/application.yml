@@ -53,6 +53,5 @@ jwt:
   refresh_time: ${JWT_REFRESH_TIME}
 
 openAPI:
-  news:
-    client_id: ${NEWS_CLIENT_ID}
-    client_secret: ${NEWS_CLIENT_SECRET}
+  kr_data:
+    service_key: ${KR_DATA_SERVICE_KEY}
