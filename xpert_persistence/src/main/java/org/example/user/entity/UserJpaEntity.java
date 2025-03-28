@@ -35,7 +35,7 @@ public class UserJpaEntity {
     @Column(columnDefinition = "VARCHAR(200)", nullable = false)
     private String profile;
 
-    @ColumnDefault("0")
+    @ColumnDefault("2000000")
     @Column(columnDefinition = "INT UNSIGNED", nullable = false)
     private Long money;
 }

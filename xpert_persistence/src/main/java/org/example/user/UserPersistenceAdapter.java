@@ -5,11 +5,12 @@ import org.example.domain.user.model.User;
 import org.example.domain.user.spi.QueryUserPort;
 import org.example.user.mapper.UserMapper;
 import org.example.user.repository.UserJpaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
+@Component
 @RequiredArgsConstructor
 public class UserPersistenceAdapter implements QueryUserPort {
     private final UserJpaRepository userJpaRepository;

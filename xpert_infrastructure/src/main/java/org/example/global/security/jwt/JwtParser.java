@@ -35,11 +35,11 @@ public class JwtParser {
         try {
             return Jwts.parser()
                     .setSigningKey(jwtProperties.secret())
-                    .parseClaimsJwt(token)
+                    .parseClaimsJws(token)
                     .getBody();
         } catch (ExpiredJwtException e) {
             throw TokenExpiredException.EXCEPTION;
-         }catch (Exception e) {
+        } catch (Exception e) {
             throw InvalidTokenException.EXCEPTION;
         }
     }
