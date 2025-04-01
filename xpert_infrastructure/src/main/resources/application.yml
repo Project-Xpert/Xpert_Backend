@@ -55,3 +55,5 @@ jwt:
 openAPI:
   kr_data:
     service_key: ${KR_DATA_SERVICE_KEY}
+  kr_export_import_bank:
+    auth_key: ${KR_EXPORT_IMPORT_BANK_AUTH_KEY}
