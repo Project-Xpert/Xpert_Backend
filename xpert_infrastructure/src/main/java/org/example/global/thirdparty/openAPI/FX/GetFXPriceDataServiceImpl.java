@@ -7,27 +7,26 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.common.exception.general.InternalServerException;
 import org.example.common.openAPI.fx.GetFXPriceService;
 import org.example.common.openAPI.fx.vo.FXItemVO;
-import org.example.global.thirdparty.openAPI.WebClientService;
+import org.example.global.thirdparty.openAPI.RestTemplateService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.net.URI;
 import java.util.List;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class GetFXPriceDataServiceImpl implements GetFXPriceService {
-    private final WebClientService webClientService;
+    private final RestTemplateService restTemplateService;
 
     @Value("${openAPI.kr_export_import_bank.auth_key}")
     String apiServiceKey;
 
     @Override
     public List<FXItemVO> getFXPrice() {
-        return formatResponse(webClientService.sendGetRequest(getRequestUri()));
+        return formatResponse((String) restTemplateService.sendGetRequest(getRequestUri(), String.class));
     }
 
     private List<FXItemVO> formatResponse(String response) {
@@ -41,13 +40,12 @@ public class GetFXPriceDataServiceImpl implements GetFXPriceService {
         }
     }
 
-    private String getRequestUri() {
+    private URI getRequestUri() {
         return UriComponentsBuilder
                 .fromUriString("https://www.koreaexim.go.kr")
                 .path("/site/program/financial/exchangeJSON")
                 .queryParam("authkey", "{authKey}")
                 .queryParam("data", "AP01")
-                .build(apiServiceKey)
-                .toString();
+                .build(apiServiceKey);
     }
 }

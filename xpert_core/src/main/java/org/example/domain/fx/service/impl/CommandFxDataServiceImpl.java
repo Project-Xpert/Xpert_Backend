@@ -15,4 +15,9 @@ public class CommandFxDataServiceImpl implements CommandFxDataService {
     public void saveFxData(FxData fxData) {
         queryFxDataPort.saveFxData(fxData);
     }
+
+    @Override
+    public void delete(FxData fxData) {
+        queryFxDataPort.delete(fxData);
+    }
 }

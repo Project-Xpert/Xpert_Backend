@@ -6,6 +6,7 @@ import org.example.common.openAPI.gold.vo.GoldAPIResponseVO;
 import org.example.common.openAPI.gold.vo.GoldBodyVO;
 import org.example.common.openAPI.gold.vo.GoldItemVO;
 import org.example.domain.gold.dto.response.GetGoldPricesResponseDto;
+import org.example.global.thirdparty.openAPI.RestTemplateService;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -21,7 +22,8 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class GetGetGoldPriceServiceImpl implements GetGoldPriceService {
+public class GetGoldPriceServiceImpl implements GetGoldPriceService {
+    private final RestTemplateService restTemplateService;
 
     @Value("${openAPI.kr_data.service_key}")
     String apiServiceKey;
@@ -30,7 +32,8 @@ public class GetGetGoldPriceServiceImpl implements GetGoldPriceService {
     public GetGoldPricesResponseDto getGoldPriceData() {
         URI uri = getRequestUri(1);
 
-        GoldBodyVO body = getGoldPrice(uri).response().get("body");
+        GoldAPIResponseVO goldAPIResponse = (GoldAPIResponseVO) restTemplateService.sendGetRequest(uri, GoldAPIResponseVO.class);
+        GoldBodyVO body = goldAPIResponse.response().get("body");
 
         List<GoldItemVO> results = new ArrayList<>(body.items().get("item"));
 

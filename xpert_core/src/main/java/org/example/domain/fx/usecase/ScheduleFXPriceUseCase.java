@@ -19,7 +19,7 @@ public class ScheduleFXPriceUseCase {
     private final GetFXPriceService getFXPriceService;
     private final CommandFxDataService commandFxDataService;
 
-    @Scheduled(cron = "0 0/30 * 1/1 * ?")
+    @Scheduled(cron = "0 0/15 * 1/1 * ?")
     public void execute() {
         List<FXItemVO> fxItemList = getFXPriceService.getFXPrice();
 

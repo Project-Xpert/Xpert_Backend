@@ -5,4 +5,6 @@ import org.example.domain.fx.model.FxData;
 public interface CommandFxDataService {
 
     void saveFxData(FxData fxData);
+
+    void delete(FxData fxData);
 }
