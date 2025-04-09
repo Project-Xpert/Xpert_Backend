@@ -40,11 +40,13 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/attribute").permitAll()
                         .requestMatchers(HttpMethod.POST, "/user/mail/code").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/user/verify/code").permitAll();
+                        .requestMatchers(HttpMethod.POST, "/user/verify/code").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/user/profile").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.GET, "/news/list").permitAll()
                         .requestMatchers(HttpMethod.GET, "/news/detail").permitAll();
+
 
                     authorization
                             .requestMatchers(HttpMethod.GET, "/gold/price").permitAll()

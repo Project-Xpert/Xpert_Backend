@@ -28,9 +28,6 @@ dependencies {
     // redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-    // webFlux
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-
     // jsoup
     implementation 'org.jsoup:jsoup:1.17.2'
 

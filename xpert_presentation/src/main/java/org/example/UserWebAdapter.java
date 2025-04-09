@@ -2,6 +2,7 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.user.dto.request.*;
+import org.example.domain.user.dto.response.GetUserInfoResponseDto;
 import org.example.domain.user.dto.response.LoginResponseDto;
 import org.example.domain.user.usecase.*;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UserWebAdapter {
     private final SignupUseCase signupUseCase;
     private final LoginUseCase loginUseCase;
+    private final GetUserInfoUseCase getUserInfoUseCase;
     private final MailSendUseCase mailSendUseCase;
     private final VerifyCodeUseCase verifyCodeUseCase;
     private final CheckUniqueAttributeUseCase checkUniqueAttributeUseCase;
@@ -32,6 +34,12 @@ public class UserWebAdapter {
     @PostMapping("/login")
     public LoginResponseDto login(@Validated @RequestBody LoginRequestDto request) {
         return loginUseCase.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/profile")
+    public GetUserInfoResponseDto getUserInfo() {
+        return getUserInfoUseCase.execute();
     }
 
     @ResponseStatus(HttpStatus.OK)

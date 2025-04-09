@@ -26,6 +26,7 @@ public class GetFXPriceDataServiceImpl implements GetFXPriceService {
 
     @Override
     public List<FXItemVO> getFXPrice() {
+        System.out.println(getRequestUri());
         return formatResponse((String) restTemplateService.sendGetRequest(getRequestUri(), String.class));
     }
 

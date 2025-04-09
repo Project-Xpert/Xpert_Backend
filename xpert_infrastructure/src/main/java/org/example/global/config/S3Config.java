@@ -1,4 +1,4 @@
-package org.example.global.thirdparty.S3;
+package org.example.global.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
