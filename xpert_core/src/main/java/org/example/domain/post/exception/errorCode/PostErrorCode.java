@@ -5,7 +5,7 @@ import org.example.common.exception.GlobalErrorCode;
 
 @RequiredArgsConstructor
 public enum PostErrorCode implements GlobalErrorCode {
-    IS_NOT_WRITER(403, "게시물의 작성자가 아닙니다"),
+    IS_NOT_OWNER(403, "게시물의 작성자가 아닙니다"),
     POST_NOT_FOUND(404, "게시글을 찾을 수 없습니다");
 
     private final int errorCode;

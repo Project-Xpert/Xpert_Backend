@@ -2,8 +2,10 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.post.dto.request.CreatePostRequestDto;
+import org.example.domain.post.dto.request.UpdatePostRequestDto;
 import org.example.domain.post.usecase.CreatePostUseCase;
 import org.example.domain.post.usecase.DeletePostUseCase;
+import org.example.domain.post.usecase.UpdatePostUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class PostWebAdapter {
     private final CreatePostUseCase createPostUseCase;
     private final DeletePostUseCase deletePostUseCase;
+    private final UpdatePostUseCase updatePostUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -31,5 +34,15 @@ public class PostWebAdapter {
     @DeleteMapping("/{postId}")
     public void deletePost(@PathVariable UUID postId) {
         deletePostUseCase.execute(postId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/{postId}")
+    public void updatePost(
+        @PathVariable UUID postId,
+        @RequestPart(value = "file", required = false) MultipartFile file,
+        @Validated @RequestPart("body") UpdatePostRequestDto request
+    ) {
+        updatePostUseCase.execute(postId, file, request);
     }
 }
