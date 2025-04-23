@@ -15,4 +15,9 @@ public class CommandPostServiceImpl implements CommandPostService {
     public void savePost(Post post) {
         queryPostPort.savePost(post);
     }
+
+    @Override
+    public void deletePost(Post post) {
+        queryPostPort.deletePost(post);
+    }
 }

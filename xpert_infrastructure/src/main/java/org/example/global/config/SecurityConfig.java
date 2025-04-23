@@ -54,7 +54,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/gold/own").authenticated();
 
                     authorization
-                        .requestMatchers(HttpMethod.POST, "/post").authenticated();
+                        .requestMatchers(HttpMethod.POST, "/post").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/post/{postId}").authenticated();
 
                     authorization
                         .anyRequest().denyAll();

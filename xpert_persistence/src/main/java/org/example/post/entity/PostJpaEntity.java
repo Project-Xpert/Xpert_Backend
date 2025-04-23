@@ -6,11 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.user.entity.UserJpaEntity;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.*;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Getter
@@ -38,4 +36,8 @@ public class PostJpaEntity {
 
     @Column(columnDefinition = "varchar(150)", nullable = true)
     private String file;
+
+    @ColumnDefault("(CURRENT_DATE)")
+    @Column(columnDefinition = "date", nullable = false)
+    private LocalDate createdAt;
 }

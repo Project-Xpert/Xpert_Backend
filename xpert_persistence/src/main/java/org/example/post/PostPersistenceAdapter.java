@@ -7,6 +7,9 @@ import org.example.post.mapper.PostMapper;
 import org.example.post.repository.PostJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Component
 @RequiredArgsConstructor
 public class PostPersistenceAdapter implements QueryPostPort {
@@ -16,6 +19,20 @@ public class PostPersistenceAdapter implements QueryPostPort {
     @Override
     public void savePost(Post post) {
         postJpaRepository.save(
+                postMapper.toEntity(post)
+        );
+    }
+
+    @Override
+    public Optional<Post> getPostByPostId(UUID postId) {
+        return postMapper.toDomain(
+                postJpaRepository.findById(postId)
+        );
+    }
+
+    @Override
+    public void deletePost(Post post) {
+        postJpaRepository.delete(
                 postMapper.toEntity(post)
         );
     }

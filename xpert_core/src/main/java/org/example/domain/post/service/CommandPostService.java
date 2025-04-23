@@ -5,4 +5,6 @@ import org.example.domain.post.model.Post;
 public interface CommandPostService {
 
     void savePost(Post post);
+
+    void deletePost(Post post);
 }

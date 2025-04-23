@@ -30,6 +30,7 @@ public class PostMapper implements GenericMapper<Post, PostJpaEntity> {
                 .file(postEntity.getFile())
                 .title(postEntity.getTitle())
                 .content(postEntity.getContent())
+                .createdAt(postEntity.getCreatedAt())
                 .build()
         );
     }
@@ -43,7 +44,8 @@ public class PostMapper implements GenericMapper<Post, PostJpaEntity> {
                 userEntity,
                 domain.title(),
                 domain.content(),
-                domain.file()
+                domain.file(),
+                domain.createdAt()
         );
     }
 }

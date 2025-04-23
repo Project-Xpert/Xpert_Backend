@@ -3,6 +3,7 @@ package org.example.domain.post.model;
 import lombok.Builder;
 import org.example.domain.user.model.User;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Builder
@@ -15,6 +16,7 @@ public record Post (
 
     String content,
 
-    String file
+    String file,
+    LocalDate createdAt
 ) {
 }
