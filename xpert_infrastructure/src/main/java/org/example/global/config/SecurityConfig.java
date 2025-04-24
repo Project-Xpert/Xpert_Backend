@@ -59,6 +59,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/post/{postId}").authenticated();
 
                     authorization
+                            .requestMatchers(HttpMethod.POST, "/comment/{postId}").authenticated();
+
+                    authorization
                         .anyRequest().denyAll();
                 })
 
