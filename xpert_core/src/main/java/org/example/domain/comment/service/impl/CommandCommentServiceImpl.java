@@ -15,4 +15,9 @@ public class CommandCommentServiceImpl implements CommandCommentService {
     public void saveComment(Comment comment) {
         queryCommentPort.saveComment(comment);
     }
+
+    @Override
+    public void deleteComment(Comment comment) {
+        queryCommentPort.deleteComment(comment);
+    }
 }
