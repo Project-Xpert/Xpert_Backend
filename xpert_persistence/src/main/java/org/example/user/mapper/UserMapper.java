@@ -30,12 +30,12 @@ public class UserMapper implements GenericMapper<User, UserJpaEntity> {
     @Override
     public UserJpaEntity toEntity(User domain) {
         return new UserJpaEntity(
-                domain.userId(),
-                domain.email(),
-                domain.username(),
-                domain.password(),
-                domain.profile(),
-                domain.money()
+                domain.getUserId(),
+                domain.getEmail(),
+                domain.getUsername(),
+                domain.getPassword(),
+                domain.getProfile(),
+                domain.getMoney()
         );
     }
 }

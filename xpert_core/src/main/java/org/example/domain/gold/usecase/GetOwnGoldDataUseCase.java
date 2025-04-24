@@ -31,7 +31,7 @@ public class GetOwnGoldDataUseCase {
             goldData.add(gold);
         }
 
-        return GetOwnGoldDataResponseDto.of(user.money(), goldData);
+        return GetOwnGoldDataResponseDto.of(user.getMoney(), goldData);
     }
 
     private Gold createEmptyGold(GoldType type) {

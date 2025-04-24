@@ -22,8 +22,8 @@ record GoldDatum(
 ) {
     static GoldDatum from(Gold gold) {
         return new GoldDatum(
-                gold.goldType().name().substring(2),
-                gold.cnt()
+                gold.getGoldType().name().substring(2),
+                gold.getCnt()
         );
     }
 }

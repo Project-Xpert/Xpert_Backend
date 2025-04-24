@@ -32,13 +32,13 @@ public class GoldMapper implements GenericMapper<Gold, GoldJpaEntity> {
 
     @Override
     public GoldJpaEntity toEntity(Gold domain) {
-        UserJpaEntity userJpaEntity = userJpaRepository.findById(domain.userId())
+        UserJpaEntity userJpaEntity = userJpaRepository.findById(domain.getUserId())
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
 
         return new GoldJpaEntity(
-                domain.goldType(),
+                domain.getGoldType(),
                 userJpaEntity,
-                domain.cnt()
+                domain.getCnt()
         );
     }
 }

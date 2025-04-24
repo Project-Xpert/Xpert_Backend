@@ -17,10 +17,10 @@ public class GetUserInfoUseCase {
         User user = currentUserProvider.getCurrentUser();
 
         return new GetUserInfoResponseDto(
-                user.userId(),
-                user.username(),
-                user.profile(),
-                Math.toIntExact(user.money())
+                user.getUserId(),
+                user.getUsername(),
+                user.getProfile(),
+                Math.toIntExact(user.getMoney())
         );
     }
 }

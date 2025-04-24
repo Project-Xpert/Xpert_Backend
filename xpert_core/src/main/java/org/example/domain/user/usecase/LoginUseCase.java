@@ -23,8 +23,8 @@ public class LoginUseCase {
     public LoginResponseDto execute(LoginRequestDto request) {
         User user = getUserService.getUserByUserId(request.userId());
 
-        securityService.checkPasswordMatches(request.password(), user.password());
+        securityService.checkPasswordMatches(request.password(), user.getPassword());
 
-        return new LoginResponseDto(jwtService.generateAccess(user.userId()));
+        return new LoginResponseDto(jwtService.generateAccess(user.getUserId()));
     }
 }

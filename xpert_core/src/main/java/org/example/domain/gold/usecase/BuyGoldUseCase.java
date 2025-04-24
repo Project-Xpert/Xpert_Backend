@@ -26,28 +26,21 @@ public class BuyGoldUseCase {
     public void execute(BuyGoldRequestDto request) {
         User user = currentUserProvider.getCurrentUser();
         Optional<Gold> optionalGold = getGoldService.getOptionalOfGoldByGoldTypeAndUser(request.goldType(), user);
-        int prevCnt = optionalGold.map(Gold::cnt).orElse(0);
+        int prevCnt = optionalGold.map(Gold::getCnt).orElse(0);
         long totalGoldPrice = (long) request.cnt() * request.price();
 
-        if (user.money() < totalGoldPrice) {
+        if (user.getMoney() < totalGoldPrice) {
             throw RunOutOfMoneyException.EXCEPTION;
         }
 
         commandGoldService.saveGold(Gold.builder()
                     .goldType(request.goldType())
-                    .userId(user.userId())
+                    .userId(user.getUserId())
                     .cnt(prevCnt + request.cnt())
                     .build()
         );
 
-        commandUserService.saveUser(User.builder()
-                    .userId(user.userId())
-                    .username(user.username())
-                    .email(user.email())
-                    .password(user.password())
-                    .profile(user.profile())
-                    .money(user.money() - totalGoldPrice)
-                    .build()
-        );
+        user.setMoney(user.getMoney() - totalGoldPrice);
+        commandUserService.saveUser(user);
     }
 }

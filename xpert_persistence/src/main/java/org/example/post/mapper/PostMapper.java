@@ -37,15 +37,15 @@ public class PostMapper implements GenericMapper<Post, PostJpaEntity> {
 
     @Override
     public PostJpaEntity toEntity(Post domain) {
-        UserJpaEntity userEntity = userMapper.toEntity(domain.user());
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
 
         return new PostJpaEntity(
-                domain.postId(),
+                domain.getPostId(),
                 userEntity,
-                domain.title(),
-                domain.content(),
-                domain.file(),
-                domain.createdAt()
+                domain.getTitle(),
+                domain.getContent(),
+                domain.getFile(),
+                domain.getCreatedAt()
         );
     }
 }

@@ -29,11 +29,11 @@ public class FxDataMapper implements GenericMapper<FxData, FxDataJpaEntity> {
     @Override
     public FxDataJpaEntity toEntity(FxData domain) {
         return new FxDataJpaEntity(
-                domain.date(),
-                domain.type(),
-                domain.price(),
-                domain.sellPrice(),
-                domain.buyPrice()
+                domain.getDate(),
+                domain.getType(),
+                domain.getPrice(),
+                domain.getSellPrice(),
+                domain.getBuyPrice()
         );
     }
 }

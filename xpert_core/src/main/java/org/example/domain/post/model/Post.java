@@ -1,22 +1,27 @@
 package org.example.domain.post.model;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.domain.user.model.User;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
+@Setter
 @Builder
-public record Post (
-    UUID postId,
+public class Post {
 
-    User user,
+    private UUID postId;
 
-    String title,
+    private User user;
 
-    String content,
+    private String title;
 
-    String file,
-    LocalDate createdAt
-) {
+    private String content;
+
+    private String file;
+
+    private LocalDate createdAt;
 }

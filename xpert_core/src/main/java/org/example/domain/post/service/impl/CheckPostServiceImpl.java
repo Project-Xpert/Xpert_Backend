@@ -11,7 +11,7 @@ public class CheckPostServiceImpl implements CheckPostService {
 
     @Override
     public void checkUserIsOwnerOfPost(User user, Post post) {
-        if (!user.userId().equals(post.user().userId())) {
+        if (!user.getUserId().equals(post.getUser().getUserId())) {
             throw IsNotOwnerOfPostException.EXCEPTION;
         }
     }
