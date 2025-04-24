@@ -37,8 +37,8 @@ public class CommentLikeMapper implements GenericMapper<CommentLike, CommentLike
 
     @Override
     public CommentLikeJpaEntity toEntity(CommentLike domain) {
-        CommentJpaEntity commentEntity = commentMapper.toEntity(domain.comment());
-        UserJpaEntity userEntity = userMapper.toEntity(domain.user());
+        CommentJpaEntity commentEntity = commentMapper.toEntity(domain.getComment());
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
 
         return new CommentLikeJpaEntity(commentEntity, userEntity);
     }

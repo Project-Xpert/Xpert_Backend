@@ -60,6 +60,7 @@ public class SecurityConfig {
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/comment/{postId}").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/comment/{commentId}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/comment/{commentId}").authenticated();
 
                     authorization

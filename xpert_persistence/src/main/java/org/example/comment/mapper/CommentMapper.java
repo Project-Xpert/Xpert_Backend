@@ -41,15 +41,15 @@ public class CommentMapper implements GenericMapper<Comment, CommentJpaEntity> {
 
     @Override
     public CommentJpaEntity toEntity(Comment domain) {
-        UserJpaEntity userEntity = userMapper.toEntity(domain.user());
-        PostJpaEntity postEntity = postMapper.toEntity(domain.post());
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
+        PostJpaEntity postEntity = postMapper.toEntity(domain.getPost());
 
         return new CommentJpaEntity(
-                domain.commentId(),
+                domain.getCommentId(),
                 userEntity,
                 postEntity,
-                domain.content(),
-                domain.createAt()
+                domain.getContent(),
+                domain.getCreateAt()
         );
     }
 }

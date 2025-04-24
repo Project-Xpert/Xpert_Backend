@@ -41,15 +41,15 @@ public class ReplyMapper implements GenericMapper<Reply, ReplyJpaEntity> {
 
     @Override
     public ReplyJpaEntity toEntity(Reply domain) {
-        UserJpaEntity userEntity = userMapper.toEntity(domain.user());
-        CommentJpaEntity commentEntity = commentMapper.toEntity(domain.comment());
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
+        CommentJpaEntity commentEntity = commentMapper.toEntity(domain.getComment());
 
         return new ReplyJpaEntity(
-                domain.replyId(),
+                domain.getReplyId(),
                 userEntity,
                 commentEntity,
-                domain.content(),
-                domain.createAt()
+                domain.getContent(),
+                domain.getCreateAt()
         );
     }
 }

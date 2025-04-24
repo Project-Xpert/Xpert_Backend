@@ -37,8 +37,8 @@ public class ReplyLikeMapper implements GenericMapper<ReplyLike, ReplyLikeJpaEnt
 
     @Override
     public ReplyLikeJpaEntity toEntity(ReplyLike domain) {
-        ReplyJpaEntity replyEntity = replyMapper.toEntity(domain.reply());
-        UserJpaEntity userEntity = userMapper.toEntity(domain.user());
+        ReplyJpaEntity replyEntity = replyMapper.toEntity(domain.getReply());
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
 
         return new ReplyLikeJpaEntity(replyEntity, userEntity);
     }
