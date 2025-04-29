@@ -13,7 +13,7 @@ public class CheckCommentServiceImpl implements CheckCommentService {
 
     @Override
     public void CheckUserIsOwnerOfComment(User user, Comment comment) {
-        if (!user.equals(comment.getUser())) {
+        if (!user.getUserId().equals(comment.getUser().getUserId())) {
             throw IsNotOwnerOfCommentException.EXCEPTION;
         }
     }

@@ -15,4 +15,9 @@ public class CommandReplyServiceImpl implements CommandReplyService {
     public void saveReply(Reply reply) {
         queryReplyPort.saveReply(reply);
     }
+
+    @Override
+    public void deleteReply(Reply reply) {
+        queryReplyPort.deleteReply(reply);
+    }
 }

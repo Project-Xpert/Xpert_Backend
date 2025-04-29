@@ -64,7 +64,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/comment/{commentId}").authenticated();
 
                     authorization
-                        .requestMatchers(HttpMethod.POST, "/reply/{commentId}").authenticated();
+                        .requestMatchers(HttpMethod.POST, "/reply/{commentId}").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/reply/{replyId}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/reply/{replyId}").authenticated();
 
                     authorization
                         .anyRequest().denyAll();
