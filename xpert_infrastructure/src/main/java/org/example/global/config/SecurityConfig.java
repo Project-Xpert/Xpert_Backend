@@ -56,7 +56,8 @@ public class SecurityConfig {
                     authorization
                         .requestMatchers(HttpMethod.POST, "/post").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/post/{postId}").authenticated()
-                        .requestMatchers(HttpMethod.PATCH, "/post/{postId}").authenticated();
+                        .requestMatchers(HttpMethod.PATCH, "/post/{postId}").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/post/like/{postId}").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/comment/{postId}").authenticated()

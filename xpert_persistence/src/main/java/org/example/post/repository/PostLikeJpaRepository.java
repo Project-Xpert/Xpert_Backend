@@ -4,5 +4,5 @@ import org.example.post.entity.LikeId;
 import org.example.post.entity.PostLikeJpaEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface LikeJpaRepository extends CrudRepository<PostLikeJpaEntity, LikeId> {
+public interface PostLikeJpaRepository extends CrudRepository<PostLikeJpaEntity, LikeId> {
 }
