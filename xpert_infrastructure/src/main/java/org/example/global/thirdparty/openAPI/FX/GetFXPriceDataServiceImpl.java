@@ -28,18 +28,7 @@ public class GetFXPriceDataServiceImpl implements GetFXPriceService {
     @Override
     public List<FXItemVO> getFXPrice() {
         System.out.println(getRequestUri());
-        return formatResponse(mapper.parseResult(connectionService.sendGetRequest(getRequestUri())));
-    }
-
-    private List<FXItemVO> formatResponse(String response) {
-        ObjectMapper mapper = new ObjectMapper();
-
-        try {
-            return mapper.readValue(response, new TypeReference<>() {});
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw InternalServerException.EXCEPTION;
-        }
+        return mapper.parseResult(connectionService.sendGetRequest(getRequestUri()));
     }
 
     private URI getRequestUri() {

@@ -29,10 +29,7 @@ public class GetGoldPriceServiceImpl implements GetGoldPriceService {
     public GetGoldPricesResponseDto getGoldPriceData() {
         URI uri = getRequestUri();
 
-        GoldAPIResponseVO goldAPIResponse = mapper.parseResult(connectionService.sendGetRequest(uri));
-        GoldBodyVO body = goldAPIResponse.response().get("body");
-
-        List<GoldItemVO> results = new ArrayList<>(body.items().get("item"));
+        List<GoldItemVO> results = mapper.parseResult(connectionService.sendGetRequest(uri));
 
         return GetGoldPricesResponseDto.builder()
                         .goldPrices(results)
