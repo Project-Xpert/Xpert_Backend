@@ -5,6 +5,7 @@ import org.example.domain.comment.exception.CommentNotFoundException;
 import org.example.domain.comment.model.Comment;
 import org.example.domain.comment.service.GetCommentService;
 import org.example.domain.comment.spi.QueryCommentPort;
+import org.example.domain.post.model.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -19,5 +20,10 @@ public class GetCommentServiceImpl implements GetCommentService {
         return queryCommentPort.findCommentByCommentId(commentId).orElseThrow(
                 () -> CommentNotFoundException.EXCEPTION
         );
+    }
+
+    @Override
+    public int getTotalCommentCnt(Post post) {
+        return queryCommentPort.countByPost(post);
     }
 }

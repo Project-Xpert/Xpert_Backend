@@ -1,6 +1,8 @@
 package org.example.reply;
 
 import lombok.RequiredArgsConstructor;
+import org.example.comment.mapper.CommentMapper;
+import org.example.domain.comment.model.Comment;
 import org.example.domain.reply.model.Reply;
 import org.example.domain.reply.spi.QueryReplyPort;
 import org.example.reply.mapper.ReplyMapper;
@@ -15,6 +17,7 @@ import java.util.UUID;
 public class ReplyPersistenceAdapter implements QueryReplyPort {
     private final ReplyJpaRepository replyJpaRepository;
     private final ReplyMapper replyMapper;
+    private final CommentMapper commentMapper;
 
     @Override
     public void saveReply(Reply reply) {
@@ -29,5 +32,10 @@ public class ReplyPersistenceAdapter implements QueryReplyPort {
     @Override
     public void deleteReply(Reply reply) {
         replyJpaRepository.delete(replyMapper.toEntity(reply));
+    }
+
+    @Override
+    public int getCountByComment(Comment comment) {
+        return replyJpaRepository.countByComment(commentMapper.toEntity(comment));
     }
 }

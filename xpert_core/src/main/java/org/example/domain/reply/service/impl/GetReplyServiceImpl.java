@@ -1,6 +1,7 @@
 package org.example.domain.reply.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.comment.model.Comment;
 import org.example.domain.reply.exception.ReplyNotFoundException;
 import org.example.domain.reply.model.Reply;
 import org.example.domain.reply.service.GetReplyService;
@@ -19,5 +20,10 @@ public class GetReplyServiceImpl implements GetReplyService {
         return queryReplyPort.findReplyByReplyId(replyId).orElseThrow(
                 () -> ReplyNotFoundException.EXCEPTION
         );
+    }
+
+    @Override
+    public int getCountByComment(Comment comment) {
+        return queryReplyPort.getCountByComment(comment);
     }
 }

@@ -5,8 +5,10 @@ import org.example.domain.post.model.Post;
 import org.example.domain.post.exception.PostNotFoundException;
 import org.example.domain.post.service.GetPostService;
 import org.example.domain.post.spi.QueryPostPort;
+import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,5 +21,10 @@ public class GetPostServiceImpl implements GetPostService {
         return queryPostPort.getPostByPostId(postId).orElseThrow(
                 () -> PostNotFoundException.EXCEPTION
         );
+    }
+
+    @Override
+    public List<PostDataWithLikeCntVO> getPostStatsList() {
+        return queryPostPort.getPostStatsList();
     }
 }

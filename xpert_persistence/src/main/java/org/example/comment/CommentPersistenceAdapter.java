@@ -5,6 +5,8 @@ import org.example.comment.mapper.CommentMapper;
 import org.example.comment.repository.CommentJpaRepository;
 import org.example.domain.comment.model.Comment;
 import org.example.domain.comment.spi.QueryCommentPort;
+import org.example.domain.post.model.Post;
+import org.example.post.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +15,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class CommentPersistenceAdapter implements QueryCommentPort {
+    private final PostMapper postMapper;
     private final CommentMapper commentMapper;
     private final CommentJpaRepository commentJpaRepository;
 
@@ -29,5 +32,10 @@ public class CommentPersistenceAdapter implements QueryCommentPort {
     @Override
     public void deleteComment(Comment comment) {
         commentJpaRepository.delete(commentMapper.toEntity(comment));
+    }
+
+    @Override
+    public int countByPost(Post post) {
+        return commentJpaRepository.countByPost(postMapper.toEntity(post));
     }
 }

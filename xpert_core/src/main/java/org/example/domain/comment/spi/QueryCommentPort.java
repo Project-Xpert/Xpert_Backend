@@ -1,6 +1,7 @@
 package org.example.domain.comment.spi;
 
 import org.example.domain.comment.model.Comment;
+import org.example.domain.post.model.Post;
 
 import javax.swing.text.html.Option;
 import java.util.Optional;
@@ -13,4 +14,6 @@ public interface QueryCommentPort {
     Optional<Comment> findCommentByCommentId(UUID commentId);
 
     void deleteComment(Comment comment);
+
+    int countByPost(Post post);
 }

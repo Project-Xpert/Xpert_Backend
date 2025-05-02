@@ -3,10 +3,12 @@ package org.example.post;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.post.model.Post;
 import org.example.domain.post.spi.QueryPostPort;
+import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
 import org.example.post.mapper.PostMapper;
 import org.example.post.repository.PostJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,5 +37,10 @@ public class PostPersistenceAdapter implements QueryPostPort {
         postJpaRepository.delete(
                 postMapper.toEntity(post)
         );
+    }
+
+    @Override
+    public List<PostDataWithLikeCntVO> getPostStatsList() {
+        return postJpaRepository.getPostStatsList();
     }
 }

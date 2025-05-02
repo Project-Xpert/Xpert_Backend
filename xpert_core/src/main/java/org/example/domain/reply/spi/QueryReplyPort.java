@@ -1,5 +1,6 @@
 package org.example.domain.reply.spi;
 
+import org.example.domain.comment.model.Comment;
 import org.example.domain.reply.model.Reply;
 
 import java.util.Optional;
@@ -12,4 +13,6 @@ public interface QueryReplyPort {
     Optional<Reply> findReplyByReplyId(UUID replyId);
 
     void deleteReply(Reply reply);
+
+    int getCountByComment(Comment comment);
 }
