@@ -28,7 +28,7 @@ public class GetGoldPriceServiceImpl implements GetGoldPriceService {
     @Override
     public GetGoldPricesResponseDto getGoldPriceData() {
         URI uri = getRequestUri();
-
+        System.out.println(uri);
         List<GoldItemVO> results = mapper.parseResult(connectionService.sendGetRequest(uri));
 
         return GetGoldPricesResponseDto.builder()
@@ -49,8 +49,6 @@ public class GetGoldPriceServiceImpl implements GetGoldPriceService {
                 .queryParam("resultType", "json")
                 .queryParam("numOfRows", "1000")
                 .queryParam("itmsNm", "금 99.99_1Kg")
-                .buildAndExpand(apiServiceKey)
-                .encode()
-                .toUri();
+                .build(apiServiceKey);
     }
 }

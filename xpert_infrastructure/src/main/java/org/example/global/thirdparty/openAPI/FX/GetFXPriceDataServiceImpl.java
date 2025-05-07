@@ -37,8 +37,6 @@ public class GetFXPriceDataServiceImpl implements GetFXPriceService {
                 .path("/site/program/financial/exchangeJSON")
                 .queryParam("authkey", "{authKey}")
                 .queryParam("data", "AP01")
-                .buildAndExpand(apiServiceKey)
-                .encode()
-                .toUri();
+                .build(apiServiceKey);
     }
 }
