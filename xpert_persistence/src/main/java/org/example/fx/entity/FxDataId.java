@@ -1,4 +1,4 @@
-package org.example.fxData.entity;
+package org.example.fx.entity;
 
 
 import lombok.AllArgsConstructor;

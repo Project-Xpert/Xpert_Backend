@@ -1,12 +1,12 @@
-package org.example.fxData;
+package org.example.fx;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.fx.model.FXType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.QueryFxDataPort;
-import org.example.fxData.entity.FxDataId;
-import org.example.fxData.mapper.FxDataMapper;
-import org.example.fxData.repository.FxDataJpaRepository;
+import org.example.fx.entity.FxDataId;
+import org.example.fx.mapper.FxDataMapper;
+import org.example.fx.repository.FxDataJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

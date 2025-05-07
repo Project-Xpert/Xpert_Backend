@@ -1,8 +1,8 @@
-package org.example.fxData.mapper;
+package org.example.fx.mapper;
 
 import org.example.GenericMapper;
 import org.example.domain.fx.model.FxData;
-import org.example.fxData.entity.FxDataJpaEntity;
+import org.example.fx.entity.FxDataJpaEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
