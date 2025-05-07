@@ -36,6 +36,6 @@ public class CommentPersistenceAdapter implements QueryCommentPort {
 
     @Override
     public int countByPost(Post post) {
-        return commentJpaRepository.countByPost(postMapper.toEntity(post));
+        return commentJpaRepository.countTotalCommentAndReplyByPost(postMapper.toEntity(post));
     }
 }
