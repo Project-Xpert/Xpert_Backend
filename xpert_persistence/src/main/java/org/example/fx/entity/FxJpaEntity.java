@@ -17,6 +17,7 @@ import org.hibernate.annotations.OnDeleteAction;
 public class FxJpaEntity {
     @Id
     @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
     private FXType fxType;
 
     @Id
