@@ -1,0 +1,46 @@
+package org.example.fx.mapper;
+
+import lombok.RequiredArgsConstructor;
+import org.example.GenericMapper;
+import org.example.domain.fx.model.Fx;
+import org.example.domain.user.model.User;
+import org.example.fx.entity.FxJpaEntity;
+import org.example.user.entity.UserJpaEntity;
+import org.example.user.mapper.UserMapper;
+import org.springframework.stereotype.Component;
+
+import java.util.Optional;
+
+@Component
+@RequiredArgsConstructor
+public class FxMapper implements GenericMapper<Fx, FxJpaEntity> {
+    private final UserMapper userMapper;
+
+    @Override
+    public Optional<Fx> toDomain(Optional<FxJpaEntity> entity) {
+        if (entity.isEmpty()) return Optional.empty();
+
+        FxJpaEntity fxEntity = entity.get();
+        User user = userMapper.toDomain(Optional.of(fxEntity.getUser())).get();
+
+        return Optional.of(Fx.builder()
+                        .fxType(fxEntity.getFxType())
+                        .user(user)
+                        .amount(fxEntity.getAmount())
+                        .sumOfBuy(fxEntity.getSumOfBuy())
+                        .build()
+        );
+    }
+
+    @Override
+    public FxJpaEntity toEntity(Fx domain) {
+        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
+
+        return new FxJpaEntity(
+                domain.getFxType(),
+                userEntity,
+                domain.getAmount(),
+                domain.getSumOfBuy()
+        );
+    }
+}
