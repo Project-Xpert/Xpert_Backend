@@ -1,8 +1,8 @@
 package org.example.reply.repository;
 
-import org.example.domain.reply.model.ReplyLike;
 import org.example.reply.entity.ReplyLIkeId;
+import org.example.reply.entity.ReplyLikeJpaEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface ReplyLikeJpaRepository extends CrudRepository<ReplyLike, ReplyLIkeId> {
+public interface ReplyLikeJpaRepository extends CrudRepository<ReplyLikeJpaEntity, ReplyLIkeId> {
 }

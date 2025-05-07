@@ -21,9 +21,4 @@ public class GetReplyServiceImpl implements GetReplyService {
                 () -> ReplyNotFoundException.EXCEPTION
         );
     }
-
-    @Override
-    public int getCountByComment(Comment comment) {
-        return queryReplyPort.getCountByComment(comment);
-    }
 }

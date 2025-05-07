@@ -7,8 +7,10 @@ import org.example.domain.reply.model.ReplyLike;
 import org.example.domain.user.model.User;
 import org.example.reply.entity.ReplyJpaEntity;
 import org.example.reply.entity.ReplyLikeJpaEntity;
+import org.example.reply.repository.ReplyJpaRepository;
 import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
+import org.example.user.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -18,6 +20,8 @@ import java.util.Optional;
 public class ReplyLikeMapper implements GenericMapper<ReplyLike, ReplyLikeJpaEntity> {
     private final ReplyMapper replyMapper;
     private final UserMapper userMapper;
+    private final UserJpaRepository userJpaRepository;
+    private final ReplyJpaRepository replyJpaRepository;
 
     @Override
     public Optional<ReplyLike> toDomain(Optional<ReplyLikeJpaEntity> entity) {
@@ -37,9 +41,9 @@ public class ReplyLikeMapper implements GenericMapper<ReplyLike, ReplyLikeJpaEnt
 
     @Override
     public ReplyLikeJpaEntity toEntity(ReplyLike domain) {
-        ReplyJpaEntity replyEntity = replyMapper.toEntity(domain.getReply());
-        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
+        UserJpaEntity userEntity = userJpaRepository.findById(domain.getUser().getUserId()).get();
+        ReplyJpaEntity replyEntity = replyJpaRepository.findById(domain.getReply().getReplyId()).get();
 
-        return new ReplyLikeJpaEntity(replyEntity, userEntity);
+        return new ReplyLikeJpaEntity(userEntity, replyEntity);
     }
 }

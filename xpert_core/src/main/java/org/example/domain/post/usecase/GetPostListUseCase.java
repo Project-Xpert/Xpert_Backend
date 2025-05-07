@@ -6,6 +6,7 @@ import org.example.domain.post.dto.response.GetPostListResponseDto;
 import org.example.domain.post.dto.vo.PostListItem;
 import org.example.domain.post.service.GetPostService;
 import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
+import org.example.domain.reply.service.GetReplyService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

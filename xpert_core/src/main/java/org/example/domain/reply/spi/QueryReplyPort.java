@@ -13,6 +13,4 @@ public interface QueryReplyPort {
     Optional<Reply> findReplyByReplyId(UUID replyId);
 
     void deleteReply(Reply reply);
-
-    int getCountByComment(Comment comment);
 }

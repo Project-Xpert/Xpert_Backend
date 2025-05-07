@@ -17,7 +17,6 @@ import java.util.UUID;
 public class ReplyPersistenceAdapter implements QueryReplyPort {
     private final ReplyJpaRepository replyJpaRepository;
     private final ReplyMapper replyMapper;
-    private final CommentMapper commentMapper;
 
     @Override
     public void saveReply(Reply reply) {
@@ -32,10 +31,5 @@ public class ReplyPersistenceAdapter implements QueryReplyPort {
     @Override
     public void deleteReply(Reply reply) {
         replyJpaRepository.delete(replyMapper.toEntity(reply));
-    }
-
-    @Override
-    public int getCountByComment(Comment comment) {
-        return replyJpaRepository.countByComment(commentMapper.toEntity(comment));
     }
 }

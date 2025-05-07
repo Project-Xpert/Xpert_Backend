@@ -5,6 +5,7 @@ import org.example.domain.reply.dto.request.CreateReplyRequestDto;
 import org.example.domain.reply.dto.request.UpdateReplyRequestDto;
 import org.example.domain.reply.usecase.CreateReplyUseCase;
 import org.example.domain.reply.usecase.DeleteReplyUseCase;
+import org.example.domain.reply.usecase.ToggleReplyLikeUseCase;
 import org.example.domain.reply.usecase.UpdateReplyUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ public class ReplyWebAdapter {
     private final CreateReplyUseCase createReplyUseCase;
     private final DeleteReplyUseCase deleteReplyUseCase;
     private final UpdateReplyUseCase updateReplyUseCase;
+    private final ToggleReplyLikeUseCase toggleReplyLikeUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{commentId}")
@@ -42,5 +44,11 @@ public class ReplyWebAdapter {
         @Validated @RequestBody UpdateReplyRequestDto request
     ) {
         updateReplyUseCase.execute(replyId, request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/like/{replyId}")
+    public void toggle(@PathVariable UUID replyId) {
+        toggleReplyLikeUseCase.execute(replyId);
     }
 }
