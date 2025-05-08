@@ -6,9 +6,11 @@ import org.example.domain.fx.model.FXType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.service.GetFxDataService;
 import org.example.domain.fx.spi.QueryFxDataPort;
+import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +21,10 @@ public class GetFxDataServiceImpl implements GetFxDataService {
     public FxData getFxDataByLocalDateAndFxType(LocalDate date, FXType fxType) {
         return queryFxDataPort.getFxDataByLocalDateAndFxType(date, fxType)
                 .orElseThrow(() -> FXDataNotFoundException.EXCEPTION);
+    }
+
+    @Override
+    public List<FxDataWithRangeVO> getNewestFxData() {
+        return queryFxDataPort.getNewestFxData();
     }
 }

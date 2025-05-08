@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.fx.model.FXType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.QueryFxDataPort;
+import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
 import org.example.fx.entity.FxDataId;
 import org.example.fx.mapper.FxDataMapper;
 import org.example.fx.repository.FxDataJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -37,5 +39,14 @@ public class FxDataPersistenceAdapter implements QueryFxDataPort {
         return fxDataMapper.toDomain(fxDataJpaRepository.findById(
                 new FxDataId(date, fxType)
         ));
+    }
+
+    @Override
+    public List<FxDataWithRangeVO> getNewestFxData() {
+        List<Object[]> results = fxDataJpaRepository.getNewestFxData();
+
+        return results.stream()
+                .map(FxDataWithRangeVO::from)
+                .toList();
     }
 }
