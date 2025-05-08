@@ -26,7 +26,7 @@ public class JsoupCrawlerImpl implements JsoupCrawler {
 
     @Override
     public GetNewsListResponseDto NaverNewsListCrawling() {
-        GetNewsListResponseDto result = null;
+        GetNewsListResponseDto result;
 
         String naverNewsUrl = "https://news.naver.com/section/101";
         String naverNewsEconomyUrl = "https://news.naver.com/breakingnews/section/101/259";

@@ -1,10 +1,12 @@
 package org.example.global.thirdparty.openAPI.connection;
 
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 import java.net.URI;
 
 public interface ConnectionService {
 
-    WebClient.ResponseSpec sendGetRequest(URI uri);
+    ClientResponse sendGetRequest(URI uri);
 }

@@ -26,6 +26,7 @@ public class WebClientConfig {
     @Bean
     public static WebClient webClient() {
         return WebClient.builder()
+                .defaultHeader(HttpHeaders.USER_AGENT, "Mozilla/5.0")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .clientConnector(new ReactorClientHttpConnector(createHttpClient()))
                 .build();
