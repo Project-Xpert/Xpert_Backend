@@ -1,6 +1,7 @@
 package org.example.fx;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.fx.model.Fx;
 import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.spi.QueryFxPort;
 import org.example.domain.fx.spi.vo.OwnFxVO;
@@ -23,5 +24,10 @@ public class FxPersistenceAdapter implements QueryFxPort {
             userMapper.toEntity(user),
             fxType
         ).orElse(new OwnFxVO(0, 0));
+    }
+
+    @Override
+    public void save(Fx fx) {
+        fxJpaRepository.save(fxMapper.toEntity(fx));
     }
 }

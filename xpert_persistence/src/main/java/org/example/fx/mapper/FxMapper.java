@@ -7,6 +7,7 @@ import org.example.domain.user.model.User;
 import org.example.fx.entity.FxJpaEntity;
 import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
+import org.example.user.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class FxMapper implements GenericMapper<Fx, FxJpaEntity> {
+    private final UserJpaRepository userJpaRepository;
     private final UserMapper userMapper;
 
     @Override
@@ -34,7 +36,7 @@ public class FxMapper implements GenericMapper<Fx, FxJpaEntity> {
 
     @Override
     public FxJpaEntity toEntity(Fx domain) {
-        UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
+        UserJpaEntity userEntity = userJpaRepository.findById(domain.getUser().getUserId()).get();
 
         return new FxJpaEntity(
                 domain.getType(),
