@@ -2,6 +2,7 @@ package org.example.fx.repository;
 
 import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.spi.vo.FxDetailVO;
+import org.example.domain.fx.spi.vo.FxTradeDataVO;
 import org.example.fx.entity.FxDataId;
 import org.example.fx.entity.FxDataJpaEntity;
 import org.example.user.entity.UserJpaEntity;
@@ -44,4 +45,15 @@ public interface FxDataJpaRepository extends CrudRepository<FxDataJpaEntity, FxD
         LIMIT 1
     """)
     FxDetailVO getFxDetail(UserJpaEntity user, FxType fxType);
+
+    @Query("""
+        SELECT new org.example.domain.fx.spi.vo.FxTradeDataVO(
+            fd.sellPrice,
+            fd.buyPrice
+        )
+        FROM fx_data fd
+        ORDER BY fd.date DESC
+        LIMIT 1
+    """)
+    FxTradeDataVO getTradeData();
 }

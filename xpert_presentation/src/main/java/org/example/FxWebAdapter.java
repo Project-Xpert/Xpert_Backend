@@ -2,9 +2,11 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.fx.dto.response.GetFxDetailResponseDto;
+import org.example.domain.fx.dto.response.GetFxTradeDataResponseDto;
 import org.example.domain.fx.dto.response.GetNewestFxDataResponseDto;
 import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.usecase.GetFxDetailUseCase;
+import org.example.domain.fx.usecase.GetFxTradeDataUseCase;
 import org.example.domain.fx.usecase.GetNewestFxDataUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class FxWebAdapter {
     private final GetNewestFxDataUseCase getNewestFxDataUseCase;
     private final GetFxDetailUseCase getFxDetailUseCase;
+    private final GetFxTradeDataUseCase getFxTradeDataUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/price")
@@ -26,5 +29,11 @@ public class FxWebAdapter {
     @GetMapping("/detail/{fxType}")
     private GetFxDetailResponseDto GetFxDetail(@PathVariable String fxType) {
         return getFxDetailUseCase.execute(FxType.valueOf(fxType));
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/trade")
+    private GetFxTradeDataResponseDto getFxTradeData() {
+        return getFxTradeDataUseCase.execute();
     }
 }

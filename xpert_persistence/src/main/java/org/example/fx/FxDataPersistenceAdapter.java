@@ -6,6 +6,7 @@ import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.QueryFxDataPort;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
 import org.example.domain.fx.spi.vo.FxDetailVO;
+import org.example.domain.fx.spi.vo.FxTradeDataVO;
 import org.example.domain.user.model.User;
 import org.example.fx.entity.FxDataId;
 import org.example.fx.mapper.FxDataMapper;
@@ -60,5 +61,10 @@ public class FxDataPersistenceAdapter implements QueryFxDataPort {
                 userMapper.toEntity(user),
                 fxType
         );
+    }
+
+    @Override
+    public FxTradeDataVO getTradeData() {
+        return fxDataJpaRepository.getTradeData();
     }
 }
