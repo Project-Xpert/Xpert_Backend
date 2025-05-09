@@ -1,5 +1,6 @@
 package org.example.fx.repository;
 
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.spi.vo.OwnFxVO;
 import org.example.fx.entity.FxId;
 import org.example.fx.entity.FxJpaEntity;
@@ -18,8 +19,14 @@ public interface FxJpaRepository extends CrudRepository<FxJpaEntity, FxId> {
                f.amount,
                f.sumOfBuy
             )
-        FROM fx f
-        WHERE f.user = :user
+        FROM
+            fx f
+        WHERE
+            f.user = :user
+            AND f.type = :fxType
     """)
-    Optional<OwnFxVO> getFxOwnDataByUser(@Param("user") UserJpaEntity user);
+    Optional<OwnFxVO> getFxOwnDataByUserAndFxType(
+            @Param("user") UserJpaEntity user,
+            @Param("fxType") FxType fxType
+    );
 }

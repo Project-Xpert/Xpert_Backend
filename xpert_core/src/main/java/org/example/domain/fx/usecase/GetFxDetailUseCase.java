@@ -23,7 +23,7 @@ public class GetFxDetailUseCase {
     public GetFxDetailResponseDto execute(FxType fxType) {
         User user = currentUserProvider.getCurrentUser();
 
-        OwnFxVO ownFxVO = getFxService.getFxOwnDataByUser(user);
+        OwnFxVO ownFxVO = getFxService.getFxOwnDataByUserAndFxType(user, fxType);
         FxData fxData = getFxDataService.getNewestFxDataByFxType(fxType);
 
         return GetFxDetailResponseDto.of(ownFxVO, fxData);

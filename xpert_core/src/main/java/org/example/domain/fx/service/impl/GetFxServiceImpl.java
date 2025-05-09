@@ -1,6 +1,7 @@
 package org.example.domain.fx.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.service.GetFxService;
 import org.example.domain.fx.spi.QueryFxPort;
 import org.example.domain.fx.spi.vo.OwnFxVO;
@@ -13,7 +14,7 @@ public class GetFxServiceImpl implements GetFxService {
     private final QueryFxPort queryFxPort;
 
     @Override
-    public OwnFxVO getFxOwnDataByUser(User user) {
-        return queryFxPort.getFxOwnDataByUser(user);
+    public OwnFxVO getFxOwnDataByUserAndFxType(User user, FxType fxType) {
+        return queryFxPort.getFxOwnDataByUserAndFxType(user, fxType);
     }
 }
