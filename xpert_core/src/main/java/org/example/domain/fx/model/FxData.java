@@ -13,7 +13,7 @@ public class FxData {
 
     private LocalDate date;
 
-    private FXType type;
+    private FxType type;
 
     private int price;
 

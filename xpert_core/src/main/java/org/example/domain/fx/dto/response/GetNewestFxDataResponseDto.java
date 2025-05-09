@@ -1,7 +1,5 @@
 package org.example.domain.fx.dto.response;
 
-import org.example.domain.fx.model.FXType;
-import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
 
 import java.util.List;

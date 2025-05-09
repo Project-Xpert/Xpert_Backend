@@ -1,12 +1,11 @@
 package org.example.domain.fx.spi.vo;
 
-import org.example.domain.fx.model.FXType;
-import org.example.domain.fx.model.Fx;
+import org.example.domain.fx.model.FxType;
 
 import java.math.BigDecimal;
 
 public record FxDataWithRangeVO(
-    FXType fxType,
+    FxType fxType,
     int price,
     int buyPrice,
     int sellPrice,
@@ -15,7 +14,7 @@ public record FxDataWithRangeVO(
     
     public static FxDataWithRangeVO from(Object[] object) {
         return new FxDataWithRangeVO(
-                FXType.valueOf((String) object[0]),
+                FxType.valueOf((String) object[0]),
                 (int) object[1],
                 (int) object[2],
                 (int) object[3],

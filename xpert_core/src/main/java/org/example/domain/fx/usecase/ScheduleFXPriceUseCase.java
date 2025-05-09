@@ -3,7 +3,7 @@ package org.example.domain.fx.usecase;
 import lombok.RequiredArgsConstructor;
 import org.example.common.openAPI.fx.GetFXPriceService;
 import org.example.common.openAPI.fx.vo.FXItemVO;
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.service.CommandFxDataService;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -25,10 +25,10 @@ public class ScheduleFXPriceUseCase {
 
         for (FXItemVO fxItem : fxItemList) {
             String unitName = fxItem.cur_unit().substring(0, 3);
-            if (Arrays.stream(FXType.values()).anyMatch(v -> v.name().equals(unitName))) {
+            if (Arrays.stream(FxType.values()).anyMatch(v -> v.name().equals(unitName))) {
                 commandFxDataService.saveFxData(FxData.builder()
                                 .date(LocalDate.now())
-                                .type(FXType.valueOf(fxItem.cur_unit().substring(0, 3)))
+                                .type(FxType.valueOf(fxItem.cur_unit().substring(0, 3)))
                                 .price(parseStringPriceToInt(fxItem.bkpr()))
                                 .sellPrice(parseStringPriceToInt(fxItem.ttb()))
                                 .buyPrice(parseStringPriceToInt(fxItem.tts()))

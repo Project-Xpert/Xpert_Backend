@@ -1,8 +1,10 @@
 package org.example.domain.fx.spi;
 
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
+import org.example.domain.fx.spi.vo.FxDetailVO;
+import org.example.domain.user.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,7 +16,9 @@ public interface QueryFxDataPort {
 
     void delete(FxData fxData);
 
-    Optional<FxData> getFxDataByLocalDateAndFxType(LocalDate date, FXType fxType);
+    Optional<FxData> getFxDataByLocalDateAndFxType(LocalDate date, FxType fxType);
 
     List<FxDataWithRangeVO> getNewestFxData();
+
+    FxDetailVO getFxDetail(User user, FxType fxType);
 }

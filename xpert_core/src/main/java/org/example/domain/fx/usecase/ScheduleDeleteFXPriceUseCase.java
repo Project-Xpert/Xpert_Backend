@@ -1,7 +1,7 @@
 package org.example.domain.fx.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.service.CommandFxDataService;
 import org.example.domain.fx.service.GetFxDataService;
@@ -20,7 +20,7 @@ public class ScheduleDeleteFXPriceUseCase {
     public void execute() {
         LocalDate date = LocalDate.now().minusDays(10);
 
-        for (FXType fxType: FXType.values()) {
+        for (FxType fxType: FxType.values()) {
             FxData fxData = getFxDataService.getFxDataByLocalDateAndFxType(date, fxType);
             commandFxDataService.delete(fxData);
         }

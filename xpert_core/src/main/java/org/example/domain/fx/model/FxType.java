@@ -1,6 +1,6 @@
 package org.example.domain.fx.model;
 
-public enum FXType {
+public enum FxType {
     USD,
     CHF,
     CNH,

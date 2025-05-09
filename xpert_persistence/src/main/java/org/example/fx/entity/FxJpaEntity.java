@@ -2,7 +2,7 @@ package org.example.fx.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 import org.example.user.entity.UserJpaEntity;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.OnDelete;
@@ -18,11 +18,11 @@ public class FxJpaEntity {
     @Id
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
-    private FXType fxType;
+    private FxType type;
 
     @Id
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
-    @JoinColumn(name = "user", referencedColumnName = "userId", nullable = false)
+    @JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity user;
 

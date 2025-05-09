@@ -4,7 +4,7 @@ package org.example.fx.entity;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -14,5 +14,5 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class FxDataId implements Serializable {
     private LocalDate date;
-    private FXType type;
+    private FxType type;
 }

@@ -10,7 +10,7 @@ import org.example.domain.user.model.User;
 @Builder
 public class Fx {
 
-    private FXType fxType;
+    private FxType type;
 
     private User user;
 

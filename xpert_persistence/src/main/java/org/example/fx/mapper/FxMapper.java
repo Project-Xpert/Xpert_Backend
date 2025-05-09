@@ -24,7 +24,7 @@ public class FxMapper implements GenericMapper<Fx, FxJpaEntity> {
         User user = userMapper.toDomain(Optional.of(fxEntity.getUser())).get();
 
         return Optional.of(Fx.builder()
-                        .fxType(fxEntity.getFxType())
+                        .type(fxEntity.getType())
                         .user(user)
                         .amount(fxEntity.getAmount())
                         .sumOfBuy(fxEntity.getSumOfBuy())
@@ -37,7 +37,7 @@ public class FxMapper implements GenericMapper<Fx, FxJpaEntity> {
         UserJpaEntity userEntity = userMapper.toEntity(domain.getUser());
 
         return new FxJpaEntity(
-                domain.getFxType(),
+                domain.getType(),
                 userEntity,
                 domain.getAmount(),
                 domain.getSumOfBuy()

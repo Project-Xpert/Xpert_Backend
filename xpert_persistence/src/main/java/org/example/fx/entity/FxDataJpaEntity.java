@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.example.domain.fx.model.FXType;
+import org.example.domain.fx.model.FxType;
 
 import java.time.LocalDate;
 
@@ -21,7 +21,7 @@ public class FxDataJpaEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private FXType type;
+    private FxType type;
 
     @Column(nullable = false, columnDefinition = "INT UNSIGNED")
     private int price;

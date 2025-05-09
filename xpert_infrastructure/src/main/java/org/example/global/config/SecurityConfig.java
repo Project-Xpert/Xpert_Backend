@@ -48,7 +48,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/news/detail").permitAll();
 
                     authorization
-                        .requestMatchers(HttpMethod.GET, "/fx/price").authenticated();
+                        .requestMatchers(HttpMethod.GET, "/fx/price").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/fx/detail/{fxType}").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.GET, "/gold/price").permitAll()
