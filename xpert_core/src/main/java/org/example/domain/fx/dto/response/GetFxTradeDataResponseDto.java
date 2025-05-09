@@ -1,6 +1,6 @@
 package org.example.domain.fx.dto.response;
 
-import org.example.domain.fx.spi.vo.FxTradeDataVO;
+import org.example.domain.fx.model.FxData;
 import org.example.domain.user.model.User;
 
 public record GetFxTradeDataResponseDto(
@@ -8,10 +8,10 @@ public record GetFxTradeDataResponseDto(
     int buyPrice,
     Long userMoney
 ) {
-    public static GetFxTradeDataResponseDto of(User user, FxTradeDataVO fxTradeData) {
+    public static GetFxTradeDataResponseDto of(User user, FxData fxData) {
         return new GetFxTradeDataResponseDto(
-                fxTradeData.sellPrice(),
-                fxTradeData.buyPrice(),
+                fxData.getSellPrice(),
+                fxData.getBuyPrice(),
                 user.getMoney()
         );
     }

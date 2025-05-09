@@ -7,9 +7,6 @@ import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.service.GetFxDataService;
 import org.example.domain.fx.spi.QueryFxDataPort;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
-import org.example.domain.fx.spi.vo.FxDetailVO;
-import org.example.domain.fx.spi.vo.FxTradeDataVO;
-import org.example.domain.user.model.User;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -32,12 +29,8 @@ public class GetFxDataServiceImpl implements GetFxDataService {
     }
 
     @Override
-    public FxDetailVO getFxDataDetail(User user, FxType fxType) {
-        return queryFxDataPort.getFxDetail(user, fxType);
-    }
-
-    @Override
-    public FxTradeDataVO getTradeFxData() {
-        return queryFxDataPort.getTradeData();
+    public FxData getNewestFxDataByFxType(FxType fxType) {
+        return queryFxDataPort.getNewestFxDataByFxType(fxType)
+                .orElseThrow(() -> FXDataNotFoundException.EXCEPTION);
     }
 }

@@ -5,13 +5,9 @@ import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.QueryFxDataPort;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
-import org.example.domain.fx.spi.vo.FxDetailVO;
-import org.example.domain.fx.spi.vo.FxTradeDataVO;
-import org.example.domain.user.model.User;
 import org.example.fx.entity.FxDataId;
 import org.example.fx.mapper.FxDataMapper;
 import org.example.fx.repository.FxDataJpaRepository;
-import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -21,7 +17,6 @@ import java.util.Optional;
 @Component
 @RequiredArgsConstructor
 public class FxDataPersistenceAdapter implements QueryFxDataPort {
-    private final UserMapper userMapper;
     private final FxDataMapper fxDataMapper;
     private final FxDataJpaRepository fxDataJpaRepository;
 
@@ -56,15 +51,9 @@ public class FxDataPersistenceAdapter implements QueryFxDataPort {
     }
 
     @Override
-    public FxDetailVO getFxDetail(User user, FxType fxType) {
-        return fxDataJpaRepository.getFxDetail(
-                userMapper.toEntity(user),
-                fxType
+    public Optional<FxData> getNewestFxDataByFxType(FxType fxType) {
+        return fxDataMapper.toDomain(
+                fxDataJpaRepository.getNewestFxDataByFxType(fxType)
         );
-    }
-
-    @Override
-    public FxTradeDataVO getTradeData() {
-        return fxDataJpaRepository.getTradeData();
     }
 }

@@ -49,7 +49,7 @@ public class SecurityConfig {
 
                     authorization
                         .requestMatchers(HttpMethod.GET, "/fx/price").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/fx/trade").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/fx/trade/{fxType}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/fx/detail/{fxType}").authenticated();
 
                     authorization

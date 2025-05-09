@@ -32,8 +32,8 @@ public class FxWebAdapter {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/trade")
-    private GetFxTradeDataResponseDto getFxTradeData() {
-        return getFxTradeDataUseCase.execute();
+    @GetMapping("/trade/{fxType}")
+    private GetFxTradeDataResponseDto getFxTradeData(@PathVariable String fxType) {
+        return getFxTradeDataUseCase.execute(FxType.valueOf(fxType));
     }
 }

@@ -3,9 +3,6 @@ package org.example.domain.fx.spi;
 import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.model.FxData;
 import org.example.domain.fx.spi.vo.FxDataWithRangeVO;
-import org.example.domain.fx.spi.vo.FxDetailVO;
-import org.example.domain.fx.spi.vo.FxTradeDataVO;
-import org.example.domain.user.model.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,7 +18,5 @@ public interface QueryFxDataPort {
 
     List<FxDataWithRangeVO> getNewestFxData();
 
-    FxDetailVO getFxDetail(User user, FxType fxType);
-
-    FxTradeDataVO getTradeData();
+    Optional<FxData> getNewestFxDataByFxType(FxType fxType);
 }
