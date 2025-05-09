@@ -17,8 +17,6 @@ public interface FxDataJpaRepository extends CrudRepository<FxDataJpaEntity, FxD
         SELECT 
             t.type,
             t.price,
-            t.buy_price,
-            t.sell_price,
             ROUND((CAST(t.price AS SIGNED) - CAST(y.price AS SIGNED)) / y.price * 100, 2) AS rate
         FROM 
             (SELECT * FROM fx_data ORDER BY date DESC LIMIT 6) t
