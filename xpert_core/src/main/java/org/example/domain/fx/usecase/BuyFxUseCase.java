@@ -5,6 +5,7 @@ import org.example.common.service.CurrentUserProvider;
 import org.example.domain.fx.dto.request.BuyFxRequestDto;
 import org.example.domain.fx.model.Fx;
 import org.example.domain.fx.model.FxData;
+import org.example.domain.fx.model.FxType;
 import org.example.domain.fx.service.CommandFxService;
 import org.example.domain.fx.service.GetFxDataService;
 import org.example.domain.fx.service.GetFxService;
@@ -30,14 +31,17 @@ public class BuyFxUseCase {
         FxData fxData = getFxDataService.getNewestFxDataByFxType(request.type());
         OwnFxVO ownFx = getFxService.getFxOwnDataByUserAndFxType(user, request.type());
 
+        int fxPrice = fxData.getPrice();
+        fxPrice *= (request.type().equals(FxType.JPY) ? request.amount() / 100 : request.amount());
+
         Fx fx = Fx.builder()
                 .user(user)
                 .type(request.type())
                 .amount(ownFx.amount() + request.amount())
-                .sumOfBuy(ownFx.sumOfBuy() + fxData.getPrice() * request.amount())
+                .sumOfBuy(ownFx.sumOfBuy() + fxPrice)
                 .build();
 
-        user.setMoney(user.getMoney() - (long) fxData.getBuyPrice() * request.amount());
+        user.setMoney(user.getMoney() - (long) fxPrice);
 
         commandFxService.saveFx(fx);
         commandUserService.saveUser(user);

@@ -51,7 +51,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/fx/price").authenticated()
                         .requestMatchers(HttpMethod.GET, "/fx/trade/{fxType}").authenticated()
                         .requestMatchers(HttpMethod.GET, "/fx/detail/{fxType}").authenticated()
-                        .requestMatchers(HttpMethod.POST, "/fx").authenticated();
+                        .requestMatchers(HttpMethod.POST, "/fx").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/fx").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.GET, "/gold/price").permitAll()

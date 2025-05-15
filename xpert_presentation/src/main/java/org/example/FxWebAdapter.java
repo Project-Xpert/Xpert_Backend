@@ -2,14 +2,12 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.fx.dto.request.BuyFxRequestDto;
+import org.example.domain.fx.dto.request.SellFxRequestDto;
 import org.example.domain.fx.dto.response.GetFxDetailResponseDto;
 import org.example.domain.fx.dto.response.GetFxTradeDataResponseDto;
 import org.example.domain.fx.dto.response.GetNewestFxDataResponseDto;
 import org.example.domain.fx.model.FxType;
-import org.example.domain.fx.usecase.BuyFxUseCase;
-import org.example.domain.fx.usecase.GetFxDetailUseCase;
-import org.example.domain.fx.usecase.GetFxTradeDataUseCase;
-import org.example.domain.fx.usecase.GetNewestFxDataUseCase;
+import org.example.domain.fx.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +20,7 @@ public class FxWebAdapter {
     private final GetFxDetailUseCase getFxDetailUseCase;
     private final GetFxTradeDataUseCase getFxTradeDataUseCase;
     private final BuyFxUseCase buyFxUseCase;
+    private final SellFxUseCase sellFxUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/price")
@@ -31,19 +30,25 @@ public class FxWebAdapter {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/detail/{fxType}")
-    private GetFxDetailResponseDto GetFxDetail(@PathVariable String fxType) {
+    public GetFxDetailResponseDto GetFxDetail(@PathVariable String fxType) {
         return getFxDetailUseCase.execute(FxType.valueOf(fxType));
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/trade/{fxType}")
-    private GetFxTradeDataResponseDto getFxTradeData(@PathVariable String fxType) {
+    public GetFxTradeDataResponseDto getFxTradeData(@PathVariable String fxType) {
         return getFxTradeDataUseCase.execute(FxType.valueOf(fxType));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    private void buyFx(@Validated @RequestBody BuyFxRequestDto buyFxRequestDto) {
-        buyFxUseCase.execute(buyFxRequestDto);
+    public void buyFx(@Validated @RequestBody BuyFxRequestDto request) {
+        buyFxUseCase.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping
+    public void sellFx(@Validated @RequestBody SellFxRequestDto request) {
+        sellFxUseCase.execute(request);
     }
 }

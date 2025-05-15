@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 public class WebClientConfig {
 
     @Bean
-    public static WebClient webClient() {
+    public WebClient webClient() {
         return WebClient.builder()
                 .defaultHeader(HttpHeaders.USER_AGENT, "Mozilla/5.0")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
@@ -32,7 +32,7 @@ public class WebClientConfig {
                 .build();
     }
 
-    private static HttpClient createHttpClient() {
+    private HttpClient createHttpClient() {
         return HttpClient.create()
                 .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 5000)
                 .responseTimeout(Duration.ofMinutes(3))
@@ -45,11 +45,10 @@ public class WebClientConfig {
                 ));
     }
 
-    private static SslContext createSSLContext() {
+    private SslContext createSSLContext() {
         try {
             return SslContextBuilder.forClient()
                     .protocols("TLSv1.2")
-                    .trustManager(InsecureTrustManagerFactory.INSTANCE)
                     .build();
         } catch (Exception e) {
             log.error(e.getMessage());
