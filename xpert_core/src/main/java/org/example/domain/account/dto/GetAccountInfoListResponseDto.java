@@ -1,12 +1,9 @@
-package org.example.domain.deposit.dto;
+package org.example.domain.account.dto;
 
-import org.example.common.openAPI.deposit.vo.DepositInfoListItemVO;
 import org.example.common.openAPI.deposit.vo.DepositInfoListVO;
 import org.example.common.openAPI.deposit.vo.SavingInfoListVO;
 
-import java.util.List;
-
-public record GetDepositInfoListResponseDto(
+public record GetAccountInfoListResponseDto(
    DepositInfoListVO deposit,
 
    SavingInfoListVO saving

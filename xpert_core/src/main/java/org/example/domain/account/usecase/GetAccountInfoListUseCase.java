@@ -1,25 +1,25 @@
-package org.example.domain.deposit.usecase;
+package org.example.domain.account.usecase;
 
 import lombok.RequiredArgsConstructor;
 import org.example.common.openAPI.deposit.GetDepositInfoListService;
 import org.example.common.openAPI.deposit.GetSavingInfoListService;
 import org.example.common.openAPI.deposit.vo.DepositInfoListVO;
 import org.example.common.openAPI.deposit.vo.SavingInfoListVO;
-import org.example.domain.deposit.dto.GetDepositInfoListResponseDto;
+import org.example.domain.account.dto.GetAccountInfoListResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class GetDepositInfoListUseCase {
+public class GetAccountInfoListUseCase {
     private final GetDepositInfoListService getDepositInfoListService;
     private final GetSavingInfoListService getSavingInfoListService;
 
-    public GetDepositInfoListResponseDto execute() {
+    public GetAccountInfoListResponseDto execute() {
         DepositInfoListVO depositInfoList = getDepositInfoListService.execute();
         SavingInfoListVO savingInfoList = getSavingInfoListService.execute();
 
-        return new GetDepositInfoListResponseDto(depositInfoList, savingInfoList);
+        return new GetAccountInfoListResponseDto(depositInfoList, savingInfoList);
     }
 }

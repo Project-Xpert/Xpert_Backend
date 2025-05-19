@@ -1,8 +1,8 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.deposit.dto.GetDepositInfoListResponseDto;
-import org.example.domain.deposit.usecase.GetDepositInfoListUseCase;
+import org.example.domain.account.dto.GetAccountInfoListResponseDto;
+import org.example.domain.account.usecase.GetAccountInfoListUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/deposit")
+@RequestMapping("/account")
 @RequiredArgsConstructor
-public class DepositWebAdapter {
-    private final GetDepositInfoListUseCase getDepositInfoListUseCase;
+public class AccountWebAdapter {
+    private final GetAccountInfoListUseCase getAccountInfoListUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/info")
-    public GetDepositInfoListResponseDto getDepositInfoList() {
-        return getDepositInfoListUseCase.execute();
+    public GetAccountInfoListResponseDto getAccountInfoList() {
+        return getAccountInfoListUseCase.execute();
     }
 }
