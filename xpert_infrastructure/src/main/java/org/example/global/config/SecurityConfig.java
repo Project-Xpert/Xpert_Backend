@@ -60,6 +60,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/gold/own").authenticated();
 
                     authorization
+                        .requestMatchers(HttpMethod.GET, "/deposit/info").permitAll();
+
+                    authorization
                         .requestMatchers(HttpMethod.POST, "/post").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/post/{postId}").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/post/{postId}").authenticated()

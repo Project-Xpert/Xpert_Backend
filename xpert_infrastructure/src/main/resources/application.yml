@@ -60,3 +60,5 @@ openAPI:
     service_key: ${KR_DATA_SERVICE_KEY}
   kr_export_import_bank:
     auth_key: ${KR_EXPORT_IMPORT_BANK_AUTH_KEY}
+  kr_financial_supervisory_service:
+    auth_key: ${KR_FINANCIAL_SUPERVISORY_SERVICE_KEY}
