@@ -37,7 +37,7 @@ public class CreateAccountUseCase {
                         .interestType(request.interestType())
                         .rate(request.rate())
                         .autoTransfer(request.autoTransfer())
-                        .day(LocalDate.now().getDayOfMonth())
+                        .day(LocalDate.now().getDayOfWeek().getValue())
                         .expireAt(expireAt)
                         .build());
     }

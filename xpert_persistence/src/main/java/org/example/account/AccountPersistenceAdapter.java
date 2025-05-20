@@ -7,6 +7,7 @@ import org.example.domain.account.model.Account;
 import org.example.domain.account.spi.QueryAccountPort;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -35,5 +36,12 @@ public class AccountPersistenceAdapter implements QueryAccountPort {
         accountJpaRepository.delete(
                 accountMapper.toEntity(account)
         );
+    }
+
+    @Override
+    public List<Account> getAccountsByDayOfWeek(int dayOfWeek) {
+        return accountJpaRepository.getAccountJpaEntitiesByDay(dayOfWeek).stream()
+                .map(account -> accountMapper.toDomain(Optional.of(account)).get())
+                .toList();
     }
 }
