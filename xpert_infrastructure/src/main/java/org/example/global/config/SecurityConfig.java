@@ -61,7 +61,8 @@ public class SecurityConfig {
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/account").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/account/info").permitAll();
+                        .requestMatchers(HttpMethod.GET, "/account/info").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/account/{accountId}").permitAll();
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/post").authenticated()

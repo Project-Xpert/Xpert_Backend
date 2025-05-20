@@ -15,4 +15,9 @@ public class CommandAccountServiceImpl implements CommandAccountService {
     public void saveAccount(Account account) {
         queryAccountPort.saveAccount(account);
     }
+
+    @Override
+    public void deleteAccount(Account account) {
+        queryAccountPort.deleteAccount(account);
+    }
 }
