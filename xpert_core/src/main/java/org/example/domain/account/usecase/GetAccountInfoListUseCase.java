@@ -5,7 +5,7 @@ import org.example.common.openAPI.deposit.GetDepositInfoListService;
 import org.example.common.openAPI.deposit.GetSavingInfoListService;
 import org.example.common.openAPI.deposit.vo.DepositInfoListVO;
 import org.example.common.openAPI.deposit.vo.SavingInfoListVO;
-import org.example.domain.account.dto.GetAccountInfoListResponseDto;
+import org.example.domain.account.dto.response.GetAccountInfoListResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

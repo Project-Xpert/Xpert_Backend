@@ -1,8 +1,7 @@
-package org.example.domain.account.spi;
+package org.example.domain.account.service;
 
 import org.example.domain.account.model.Account;
 
-public interface QueryAccountPort {
-
+public interface CommandAccountService {
     void saveAccount(Account account);
 }

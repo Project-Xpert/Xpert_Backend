@@ -29,12 +29,14 @@ public class AccountMapper implements GenericMapper<Account, AccountJpaEntity> {
                         .accountId(accountEntity.getAccountId())
                         .user(user)
                         .productName(accountEntity.getProductName())
+                        .companyName(accountEntity.getCompanyName())
                         .money(accountEntity.getMoney())
                         .interest(accountEntity.getInterest())
                         .accountType(accountEntity.getAccountType())
                         .interestType(accountEntity.getInterestType())
                         .rate(accountEntity.getRate())
                         .autoTransfer(accountEntity.getAutoTransfer())
+                        .day(accountEntity.getDay())
                         .expireAt(accountEntity.getExpireAt())
                         .build());
     }
@@ -47,12 +49,14 @@ public class AccountMapper implements GenericMapper<Account, AccountJpaEntity> {
                 domain.getAccountId(),
                 userEntity,
                 domain.getProductName(),
+                domain.getCompanyName(),
                 domain.getMoney(),
                 domain.getInterest(),
                 domain.getAccountType(),
                 domain.getInterestType(),
                 domain.getRate(),
                 domain.getAutoTransfer(),
+                domain.getDay(),
                 domain.getExpireAt()
         );
     }

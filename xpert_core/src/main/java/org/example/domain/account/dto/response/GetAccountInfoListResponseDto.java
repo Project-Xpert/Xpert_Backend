@@ -1,4 +1,4 @@
-package org.example.domain.account.dto;
+package org.example.domain.account.dto.response;
 
 import org.example.common.openAPI.deposit.vo.DepositInfoListVO;
 import org.example.common.openAPI.deposit.vo.SavingInfoListVO;

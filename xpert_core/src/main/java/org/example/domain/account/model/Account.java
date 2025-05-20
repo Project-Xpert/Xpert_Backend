@@ -18,6 +18,8 @@ public class Account {
 
     private String productName;
 
+    private String companyName;
+
     private int money;
 
     private int interest;
@@ -29,6 +31,8 @@ public class Account {
     private Double rate;
 
     private Boolean autoTransfer;
+
+    private int day;
 
     private LocalDate expireAt;
 }

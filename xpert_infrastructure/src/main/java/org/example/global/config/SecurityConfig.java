@@ -60,6 +60,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/gold/own").authenticated();
 
                     authorization
+                        .requestMatchers(HttpMethod.POST, "/account").permitAll()
                         .requestMatchers(HttpMethod.GET, "/account/info").permitAll();
 
                     authorization

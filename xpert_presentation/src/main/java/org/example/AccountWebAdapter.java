@@ -1,23 +1,30 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.account.dto.GetAccountInfoListResponseDto;
+import org.example.domain.account.dto.request.CreateAccountRequestDto;
+import org.example.domain.account.dto.response.GetAccountInfoListResponseDto;
+import org.example.domain.account.usecase.CreateAccountUseCase;
 import org.example.domain.account.usecase.GetAccountInfoListUseCase;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/account")
 @RequiredArgsConstructor
 public class AccountWebAdapter {
     private final GetAccountInfoListUseCase getAccountInfoListUseCase;
+    private final CreateAccountUseCase createAccountUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/info")
     public GetAccountInfoListResponseDto getAccountInfoList() {
         return getAccountInfoListUseCase.execute();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public void createAccount(@Validated @RequestBody CreateAccountRequestDto request) {
+        createAccountUseCase.execute(request);
     }
 }

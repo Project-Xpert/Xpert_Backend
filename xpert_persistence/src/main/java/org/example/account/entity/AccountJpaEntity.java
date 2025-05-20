@@ -24,13 +24,16 @@ public class AccountJpaEntity {
     @Column(columnDefinition = "BINARY(16)", nullable = false)
     UUID accountId;
 
-    @ManyToOne(targetEntity = AccountJpaEntity.class, optional = false)
+    @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
     @JoinColumn(name="userId", referencedColumnName = "userId", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     UserJpaEntity user;
 
     @Column(columnDefinition = "VARCHAR(30)", nullable = false)
     String productName;
+
+    @Column(columnDefinition = "VARCHAR(20)", nullable = false)
+    String companyName;
 
     @Column(columnDefinition = "INTEGER", nullable = false)
     int money;
@@ -52,6 +55,9 @@ public class AccountJpaEntity {
 
     @Column(columnDefinition = "TINYINT", nullable = false)
     Boolean autoTransfer;
+
+    @Column(columnDefinition = "INTEGER", nullable = false)
+    private int day;
 
     @ColumnDefault("(CURRENT_DATE)")
     @Column(columnDefinition = "date", nullable = false)
