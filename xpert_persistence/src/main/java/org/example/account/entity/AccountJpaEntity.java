@@ -56,10 +56,18 @@ public class AccountJpaEntity {
     @Column(columnDefinition = "TINYINT", nullable = false)
     Boolean autoTransfer;
 
+    @ColumnDefault("0")
     @Column(columnDefinition = "INTEGER", nullable = false)
-    private int day;
+    int autoTransferAmount;
+
+    @Column(columnDefinition = "INTEGER", nullable = false)
+    int day;
 
     @ColumnDefault("(CURRENT_DATE)")
     @Column(columnDefinition = "date", nullable = false)
-    private LocalDate expireAt;
+    LocalDate expireAt;
+
+    @ColumnDefault("0")
+    @Column(columnDefinition = "TINYINT", nullable = false)
+    Boolean isOverdue;
 }

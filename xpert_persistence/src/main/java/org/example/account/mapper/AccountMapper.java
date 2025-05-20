@@ -36,8 +36,10 @@ public class AccountMapper implements GenericMapper<Account, AccountJpaEntity> {
                         .interestType(accountEntity.getInterestType())
                         .rate(accountEntity.getRate())
                         .autoTransfer(accountEntity.getAutoTransfer())
+                        .autoTransferAmount(accountEntity.getAutoTransferAmount())
                         .day(accountEntity.getDay())
                         .expireAt(accountEntity.getExpireAt())
+                        .isOverdue(accountEntity.getIsOverdue())
                         .build());
     }
 
@@ -56,8 +58,10 @@ public class AccountMapper implements GenericMapper<Account, AccountJpaEntity> {
                 domain.getInterestType(),
                 domain.getRate(),
                 domain.getAutoTransfer(),
+                domain.getAutoTransferAmount(),
                 domain.getDay(),
-                domain.getExpireAt()
+                domain.getExpireAt(),
+                domain.getIsOverdue()
         );
     }
 }

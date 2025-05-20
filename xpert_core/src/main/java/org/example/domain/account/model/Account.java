@@ -32,7 +32,11 @@ public class Account {
 
     private Boolean autoTransfer;
 
+    private int autoTransferAmount;
+
     private int day;
 
     private LocalDate expireAt;
+
+    private Boolean isOverdue;
 }
