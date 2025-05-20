@@ -5,6 +5,7 @@ import org.example.domain.account.exception.AccountNotFoundException;
 import org.example.domain.account.model.Account;
 import org.example.domain.account.service.GetAccountService;
 import org.example.domain.account.spi.QueryAccountPort;
+import org.example.domain.user.model.User;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -25,5 +26,10 @@ public class GetAccountServiceImpl implements GetAccountService {
     @Override
     public List<Account> getAccountsByDayOfWeek(int dayOfWeek) {
         return queryAccountPort.getAccountsByDayOfWeek(dayOfWeek);
+    }
+
+    @Override
+    public List<Account> getAccountsByUser(User user) {
+        return queryAccountPort.getAccountsByUser(user);
     }
 }

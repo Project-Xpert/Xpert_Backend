@@ -1,6 +1,7 @@
 package org.example.domain.account.spi;
 
 import org.example.domain.account.model.Account;
+import org.example.domain.user.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,4 +16,6 @@ public interface QueryAccountPort {
     void deleteAccount(Account account);
 
     List<Account> getAccountsByDayOfWeek(int dayOfWeek);
+
+    List<Account> getAccountsByUser(User user);
 }

@@ -5,6 +5,8 @@ import org.example.account.mapper.AccountMapper;
 import org.example.account.repository.AccountJpaRepository;
 import org.example.domain.account.model.Account;
 import org.example.domain.account.spi.QueryAccountPort;
+import org.example.domain.user.model.User;
+import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.UUID;
 public class AccountPersistenceAdapter implements QueryAccountPort {
     private final AccountJpaRepository accountJpaRepository;
     private final AccountMapper accountMapper;
+    private final UserMapper userMapper;
 
     @Override
     public void saveAccount(Account account) {
@@ -41,6 +44,13 @@ public class AccountPersistenceAdapter implements QueryAccountPort {
     @Override
     public List<Account> getAccountsByDayOfWeek(int dayOfWeek) {
         return accountJpaRepository.getAccountJpaEntitiesByDay(dayOfWeek).stream()
+                .map(account -> accountMapper.toDomain(Optional.of(account)).get())
+                .toList();
+    }
+
+    @Override
+    public List<Account> getAccountsByUser(User user) {
+        return accountJpaRepository.getAccountJpaEntitiesByUser(userMapper.toEntity(user)).stream()
                 .map(account -> accountMapper.toDomain(Optional.of(account)).get())
                 .toList();
     }
