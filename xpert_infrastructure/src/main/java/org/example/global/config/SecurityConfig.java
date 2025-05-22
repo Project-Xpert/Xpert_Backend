@@ -60,10 +60,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/gold/own").authenticated();
 
                     authorization
-                        .requestMatchers(HttpMethod.GET, "/account").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/account").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/account/info").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/account/{accountId}").permitAll();
+                        .requestMatchers(HttpMethod.GET, "/account").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/account").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/account/info").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/account/{accountId}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/account/{accountId}").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/post").authenticated()

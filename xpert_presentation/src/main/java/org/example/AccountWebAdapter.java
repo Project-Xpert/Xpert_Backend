@@ -2,12 +2,10 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.account.dto.request.CreateAccountRequestDto;
+import org.example.domain.account.dto.response.GetAccountDetailResponseDto;
 import org.example.domain.account.dto.response.GetAccountInfoListResponseDto;
 import org.example.domain.account.dto.response.GetAccountListResponseDto;
-import org.example.domain.account.usecase.CreateAccountUseCase;
-import org.example.domain.account.usecase.DeleteAccountUseCase;
-import org.example.domain.account.usecase.GetAccountInfoListUseCase;
-import org.example.domain.account.usecase.GetAccountListUseCase;
+import org.example.domain.account.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +17,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AccountWebAdapter {
     private final GetAccountInfoListUseCase getAccountInfoListUseCase;
+    private final GetAccountDetailUseCase accountDetailUseCase;
     private final GetAccountListUseCase getAccountListUseCase;
     private final CreateAccountUseCase createAccountUseCase;
     private final DeleteAccountUseCase deleteAccountUseCase;
@@ -33,6 +32,12 @@ public class AccountWebAdapter {
     @GetMapping
     public GetAccountListResponseDto getAccountList() {
         return getAccountListUseCase.execute();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{accountId}")
+    public GetAccountDetailResponseDto getAccountDetail(@PathVariable UUID accountId) {
+        return accountDetailUseCase.execute(accountId);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
