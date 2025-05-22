@@ -33,7 +33,7 @@ public record GetAccountDetailResponseDto(
                 account.getRate(),
                 account.getAutoTransferAmount(),
                 account.getAutoTransfer(),
-                0
+                account.getExpireAt()
         );
     }
 }

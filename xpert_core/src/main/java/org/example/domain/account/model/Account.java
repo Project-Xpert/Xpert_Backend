@@ -36,7 +36,7 @@ public class Account {
 
     private int day;
 
-    private LocalDate expireAt;
+    private int expireAt;
 
     private Boolean isOverdue;
 }

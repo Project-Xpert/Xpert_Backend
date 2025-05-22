@@ -63,9 +63,8 @@ public class AccountJpaEntity {
     @Column(columnDefinition = "INTEGER", nullable = false)
     int day;
 
-    @ColumnDefault("(CURRENT_DATE)")
-    @Column(columnDefinition = "date", nullable = false)
-    LocalDate expireAt;
+    @Column(columnDefinition = "INTEGER", nullable = false)
+    int expireAt;
 
     @ColumnDefault("0")
     @Column(columnDefinition = "TINYINT", nullable = false)

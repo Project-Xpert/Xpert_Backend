@@ -31,22 +31,29 @@ public class CalculateInterestUseCase {
         List<Account> accountList = getAccountService.getAccountsByDayOfWeek(dayOfWeek);
 
         for (Account account: accountList) {
-            if (account.getInterestType().equals(InterestType.COMPOUND)) {
-                boolean autoTransferIsValid = account.getUser().getMoney() >= account.getAutoTransferAmount();
-                boolean isFixedSavingsAccount = account.getAccountType().equals(AccountType.FIXED_SAVINGS);
+            if (account.getExpireAt() > 0 && !account.getIsOverdue()) {
+                boolean shouldCalculateInterest = true;
 
-                if (account.getAutoTransfer() && autoTransferIsValid || isFixedSavingsAccount) {
-                    transferMoney(account);
-                } else {
-                    account.setIsOverdue(true);
-                    commandAccountService.saveAccount(account);
-                    continue;
+                // 적금계좌일시 추가로 계좌에 넣는 금액 계산하기
+                if (account.getInterestType().equals(InterestType.COMPOUND)) {
+                    boolean autoTransferIsValid = account.getUser().getMoney() >= account.getAutoTransferAmount();
+                    boolean isFixedSavingsAccount = account.getAccountType().equals(AccountType.FIXED_SAVINGS);
+
+                    if ((account.getAutoTransfer() || isFixedSavingsAccount) && autoTransferIsValid) {
+                        transferMoney(account);
+                    } else {
+                        account.setIsOverdue(true);
+                        shouldCalculateInterest = false;
+                    }
                 }
+
+                if (shouldCalculateInterest) {
+                    account.setInterest(calculateInterest(account));
+                    account.setExpireAt(account.getExpireAt() - 1);
+                }
+
+                commandAccountService.saveAccount(account);
             }
-
-            account.setInterest(calculateInterest(account));
-
-            commandAccountService.saveAccount(account);
         }
     }
 

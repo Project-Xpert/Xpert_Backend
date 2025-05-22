@@ -23,8 +23,6 @@ public class CreateAccountUseCase {
     public void execute(CreateAccountRequestDto request) {
         User user = currentUserProvider.getCurrentUser();
 
-        LocalDate expireAt = LocalDate.now().plusWeeks(request.expirePeriod());
-
         user.setMoney(user.getMoney() - request.money());
         commandUserService.saveUser(user);
 
@@ -39,7 +37,7 @@ public class CreateAccountUseCase {
                         .autoTransfer(request.autoTransfer())
                         .autoTransferAmount(request.money())
                         .day(LocalDate.now().getDayOfWeek().getValue())
-                        .expireAt(expireAt)
+                        .expireAt(request.expirePeriod())
                         .build());
     }
 }

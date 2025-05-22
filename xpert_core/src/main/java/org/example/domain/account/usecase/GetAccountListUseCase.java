@@ -34,7 +34,7 @@ public class GetAccountListUseCase {
         for (Account account: accounts) {
             if (account.getIsOverdue()) {
                 overdueAccounts.add(AccountListItemVO.from(account));
-            } else if (account.getExpireAt().isBefore(LocalDate.now())) {
+            } else if (account.getExpireAt() == 0) {
                 expiredAccounts.add(AccountListItemVO.from(account));
             } else if (account.getAccountType() == AccountType.DEPOSIT) {
                 deposits.add(AccountListItemVO.from(account));
