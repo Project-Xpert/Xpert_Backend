@@ -64,7 +64,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/account").authenticated()
                         .requestMatchers(HttpMethod.GET, "/account/info").authenticated()
                         .requestMatchers(HttpMethod.GET, "/account/{accountId}").authenticated()
-                        .requestMatchers(HttpMethod.DELETE, "/account/{accountId}").authenticated();
+                        .requestMatchers(HttpMethod.DELETE, "/account/{accountId}").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/account/auto-transfer/{accountId}").authenticated();
 
                     authorization
                         .requestMatchers(HttpMethod.POST, "/post").authenticated()

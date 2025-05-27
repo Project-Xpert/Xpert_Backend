@@ -18,4 +18,6 @@ public interface QueryAccountPort {
     List<Account> getAccountsByDayOfWeek(int dayOfWeek);
 
     List<Account> getAccountsByUser(User user);
+
+    List<Account> getAccountsNeedToDelete();
 }

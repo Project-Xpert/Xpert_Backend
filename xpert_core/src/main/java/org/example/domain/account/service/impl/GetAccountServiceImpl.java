@@ -8,7 +8,6 @@ import org.example.domain.account.spi.QueryAccountPort;
 import org.example.domain.user.model.User;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,5 +30,10 @@ public class GetAccountServiceImpl implements GetAccountService {
     @Override
     public List<Account> getAccountsByUser(User user) {
         return queryAccountPort.getAccountsByUser(user);
+    }
+
+    @Override
+    public List<Account> getAccountsNeedToDelete() {
+        return queryAccountPort.getAccountsNeedToDelete();
     }
 }

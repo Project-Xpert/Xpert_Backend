@@ -2,6 +2,7 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.account.dto.request.CreateAccountRequestDto;
+import org.example.domain.account.dto.request.UpdateAutoTransferSettingRequestDto;
 import org.example.domain.account.dto.response.GetAccountDetailResponseDto;
 import org.example.domain.account.dto.response.GetAccountInfoListResponseDto;
 import org.example.domain.account.dto.response.GetAccountListResponseDto;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RequestMapping("/account")
 @RequiredArgsConstructor
 public class AccountWebAdapter {
+    private final UpdateAutoTransferSettingUseCase updateAutoTransferSettingUseCase;
     private final GetAccountInfoListUseCase getAccountInfoListUseCase;
     private final GetAccountDetailUseCase accountDetailUseCase;
     private final GetAccountListUseCase getAccountListUseCase;
@@ -50,5 +52,14 @@ public class AccountWebAdapter {
     @DeleteMapping("/{accountId}")
     public void deleteAccount(@PathVariable UUID accountId) {
         deleteAccountUseCase.execute(accountId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/auto-transfer/{accountId}")
+    public void updateAutoTransferSetting(
+        @PathVariable UUID accountId,
+        @Validated @RequestBody UpdateAutoTransferSettingRequestDto request
+    ) {
+       updateAutoTransferSettingUseCase.execute(accountId, request);
     }
 }
