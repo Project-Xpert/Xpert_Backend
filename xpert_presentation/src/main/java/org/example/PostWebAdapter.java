@@ -3,6 +3,7 @@ package org.example;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.post.dto.request.CreatePostRequestDto;
 import org.example.domain.post.dto.request.UpdatePostRequestDto;
+import org.example.domain.post.dto.response.GetPostDetailResponseDto;
 import org.example.domain.post.dto.response.GetPostListResponseDto;
 import org.example.domain.post.usecase.*;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,7 @@ public class PostWebAdapter {
     private final UpdatePostUseCase updatePostUseCase;
     private final TogglePostLikeUseCase togglePostLikeUseCase;
     private final GetPostListUseCase getPostListUseCase;
+    private final GetPostDetailUseCase getPostDetailUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -58,5 +60,12 @@ public class PostWebAdapter {
     @GetMapping("/list")
     public GetPostListResponseDto getPostList() {
         return getPostListUseCase.execute();
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/detail/{postId}")
+    public GetPostDetailResponseDto getPostDetail(@PathVariable UUID postId) {
+        System.out.println(postId);
+        return getPostDetailUseCase.execute(postId);
     }
 }

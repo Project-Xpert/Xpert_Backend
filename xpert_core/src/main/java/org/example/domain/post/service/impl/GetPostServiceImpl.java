@@ -24,7 +24,14 @@ public class GetPostServiceImpl implements GetPostService {
     }
 
     @Override
-    public List<PostDataWithLikeCntVO> getPostStatsList() {
-        return queryPostPort.getPostStatsList();
+    public List<PostDataWithLikeCntVO> getPostStatusList() {
+        return queryPostPort.getPostStatusList();
+    }
+
+    @Override
+    public PostDataWithLikeCntVO getPostStatusByPostId(UUID postId) {
+        return queryPostPort.getPostStatusByPostId(postId).orElseThrow(
+                () -> PostNotFoundException.EXCEPTION
+        );
     }
 }

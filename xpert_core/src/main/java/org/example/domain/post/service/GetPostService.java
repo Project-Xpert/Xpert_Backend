@@ -10,5 +10,7 @@ public interface GetPostService {
 
     Post getPostByPostId(UUID postId);
 
-    List<PostDataWithLikeCntVO> getPostStatsList();
+    List<PostDataWithLikeCntVO> getPostStatusList();
+
+    PostDataWithLikeCntVO getPostStatusByPostId(UUID postId);
 }

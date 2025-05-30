@@ -1,14 +1,14 @@
 package org.example.reply;
 
 import lombok.RequiredArgsConstructor;
-import org.example.comment.mapper.CommentMapper;
-import org.example.domain.comment.model.Comment;
+import org.example.domain.reply.spi.vo.ReplyDataWithLikeCntVO;
 import org.example.domain.reply.model.Reply;
 import org.example.domain.reply.spi.QueryReplyPort;
 import org.example.reply.mapper.ReplyMapper;
 import org.example.reply.repository.ReplyJpaRepository;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,5 +31,10 @@ public class ReplyPersistenceAdapter implements QueryReplyPort {
     @Override
     public void deleteReply(Reply reply) {
         replyJpaRepository.delete(replyMapper.toEntity(reply));
+    }
+
+    @Override
+    public List<ReplyDataWithLikeCntVO> findReplyStatusListByPostId(UUID postId) {
+        return replyJpaRepository.getReplyStatusListByPostId(postId);
     }
 }

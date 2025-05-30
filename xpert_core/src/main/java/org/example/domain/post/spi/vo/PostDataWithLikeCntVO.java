@@ -4,15 +4,14 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public record PostDataWithLikeCntVO(
-
-        UUID postId,
-
-        String writer,
-
-        String title,
-
-        LocalDate createdAt,
-
-        Long likeCnt
+    UUID postId,
+    String profile,
+    String userId,
+    String writer,
+    String title,
+    String contents,
+    String mainImg,
+    LocalDate createdAt,
+    Long likeCnt
 ) {
 }

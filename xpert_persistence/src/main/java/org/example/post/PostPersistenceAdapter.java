@@ -40,7 +40,12 @@ public class PostPersistenceAdapter implements QueryPostPort {
     }
 
     @Override
-    public List<PostDataWithLikeCntVO> getPostStatsList() {
-        return postJpaRepository.getPostStatsList();
+    public List<PostDataWithLikeCntVO> getPostStatusList() {
+        return postJpaRepository.getPostStatusList();
+    }
+
+    @Override
+    public Optional<PostDataWithLikeCntVO> getPostStatusByPostId(UUID postId) {
+        return postJpaRepository.getPostStatusByPostId(postId);
     }
 }

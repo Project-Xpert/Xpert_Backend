@@ -11,7 +11,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Getter
 @IdClass(ReplyLIkeId.class)
-@Entity(name = "reply_like")
+@Entity(name = "replyLike")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ReplyLikeJpaEntity {

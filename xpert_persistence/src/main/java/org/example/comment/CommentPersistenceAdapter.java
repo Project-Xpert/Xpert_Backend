@@ -6,9 +6,11 @@ import org.example.comment.repository.CommentJpaRepository;
 import org.example.domain.comment.model.Comment;
 import org.example.domain.comment.spi.QueryCommentPort;
 import org.example.domain.post.model.Post;
+import org.example.domain.comment.spi.vo.CommentDataWithLikeCntVO;
 import org.example.post.mapper.PostMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,5 +39,10 @@ public class CommentPersistenceAdapter implements QueryCommentPort {
     @Override
     public int countByPost(Post post) {
         return commentJpaRepository.countTotalCommentAndReplyByPost(postMapper.toEntity(post));
+    }
+
+    @Override
+    public List<CommentDataWithLikeCntVO> getCommentStatusListByPostId(UUID postId) {
+        return commentJpaRepository.getCommentStatusListByPostId(postId);
     }
 }

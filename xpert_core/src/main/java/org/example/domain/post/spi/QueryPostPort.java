@@ -3,6 +3,7 @@ package org.example.domain.post.spi;
 import org.example.domain.post.model.Post;
 import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -15,5 +16,7 @@ public interface QueryPostPort {
 
     void deletePost(Post post);
 
-    List<PostDataWithLikeCntVO> getPostStatsList();
+    List<PostDataWithLikeCntVO> getPostStatusList();
+
+    Optional<PostDataWithLikeCntVO> getPostStatusByPostId(UUID postId);
 }

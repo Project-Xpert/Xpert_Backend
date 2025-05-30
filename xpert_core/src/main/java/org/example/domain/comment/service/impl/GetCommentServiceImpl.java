@@ -6,8 +6,10 @@ import org.example.domain.comment.model.Comment;
 import org.example.domain.comment.service.GetCommentService;
 import org.example.domain.comment.spi.QueryCommentPort;
 import org.example.domain.post.model.Post;
+import org.example.domain.comment.spi.vo.CommentDataWithLikeCntVO;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -25,5 +27,10 @@ public class GetCommentServiceImpl implements GetCommentService {
     @Override
     public int getTotalCommentCnt(Post post) {
         return queryCommentPort.countByPost(post);
+    }
+
+    @Override
+    public List<CommentDataWithLikeCntVO> getCommentStatusListByPostId(UUID postId) {
+        return queryCommentPort.getCommentStatusListByPostId(postId);
     }
 }
