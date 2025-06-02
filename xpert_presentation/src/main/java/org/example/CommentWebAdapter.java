@@ -5,6 +5,7 @@ import org.example.domain.comment.dto.response.CreateCommentRequestDto;
 import org.example.domain.comment.dto.response.UpdateCommentRequestDto;
 import org.example.domain.comment.usecase.CreateCommentUseCase;
 import org.example.domain.comment.usecase.DeleteCommentUseCase;
+import org.example.domain.comment.usecase.ToggleCommentLikeUseCase;
 import org.example.domain.comment.usecase.UpdateCommentUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ public class CommentWebAdapter {
     private final CreateCommentUseCase createCommentUseCase;
     private final DeleteCommentUseCase deleteCommentUseCase;
     private final UpdateCommentUseCase updateCommentUseCase;
+    private final ToggleCommentLikeUseCase toggleCommentLikeUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{postId}")
@@ -42,5 +44,11 @@ public class CommentWebAdapter {
         @Validated @RequestBody UpdateCommentRequestDto request
     ) {
         updateCommentUseCase.execute(commentId, request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/like/{commentId}")
+    public void toggleCommentLike(@PathVariable("commentId") UUID commentId) {
+        toggleCommentLikeUseCase.execute(commentId);
     }
 }

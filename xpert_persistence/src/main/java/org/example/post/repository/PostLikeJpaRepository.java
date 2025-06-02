@@ -1,5 +1,6 @@
 package org.example.post.repository;
 
+import org.example.domain.user.model.User;
 import org.example.post.entity.LikeId;
 import org.example.post.entity.PostLikeJpaEntity;
 import org.springframework.data.repository.CrudRepository;

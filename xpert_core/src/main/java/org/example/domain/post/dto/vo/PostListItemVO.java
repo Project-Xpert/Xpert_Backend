@@ -5,7 +5,7 @@ import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public record PostListItem(
+public record PostListItemVO(
 
         UUID postId,
 
@@ -19,8 +19,8 @@ public record PostListItem(
 
         int commentCnt
 ) {
-    public static PostListItem of(PostDataWithLikeCntVO vo, int commentCnt) {
-        return new PostListItem(
+    public static PostListItemVO of(PostDataWithLikeCntVO vo, int commentCnt) {
+        return new PostListItemVO(
                 vo.postId(),
                 vo.writer(),
                 vo.title(),

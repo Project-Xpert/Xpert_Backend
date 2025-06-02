@@ -3,7 +3,7 @@ package org.example.domain.post.usecase;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.comment.service.GetCommentService;
 import org.example.domain.post.dto.response.GetPostListResponseDto;
-import org.example.domain.post.dto.vo.PostListItem;
+import org.example.domain.post.dto.vo.PostListItemVO;
 import org.example.domain.post.service.GetPostService;
 import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,14 @@ public class GetPostListUseCase {
     public GetPostListResponseDto execute() {
         List<PostDataWithLikeCntVO> postData = getPostService.getPostStatusList();
 
-        List<PostListItem> postListItems = new ArrayList<>();
+        List<PostListItemVO> postListItems = new ArrayList<>();
 
         for (PostDataWithLikeCntVO postDatum: postData) {
             int commentCnt = getCommentService.getTotalCommentCnt(
                     getPostService.getPostByPostId(postDatum.postId())
             );
 
-            postListItems.add(PostListItem.of(postDatum, commentCnt));
+            postListItems.add(PostListItemVO.of(postDatum, commentCnt));
         }
 
         return new GetPostListResponseDto(postListItems);
