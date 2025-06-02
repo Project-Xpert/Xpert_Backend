@@ -9,8 +9,11 @@ import org.example.reply.entity.ReplyLIkeId;
 import org.example.reply.mapper.ReplyLikeMapper;
 import org.example.reply.mapper.ReplyMapper;
 import org.example.reply.repository.ReplyLikeJpaRepository;
+import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -31,10 +34,16 @@ public class ReplyLikePersistenceAdapter implements QueryReplyLikePort {
     }
 
     @Override
-    public boolean checkReplyLikeByUserAndReply(User user, Reply reply) {
+    public boolean existsByUserAndReply(User user, Reply reply) {
         return replyLikeJpaRepository.existsById(new ReplyLIkeId(
                 replyMapper.toEntity(reply),
                 userMapper.toEntity(user)
         ));
+    }
+
+    @Override
+    public boolean existsByReplyIdAndUser(UUID replyId, User user) {
+        UserJpaEntity userEntity = userMapper.toEntity(user);
+        return replyLikeJpaRepository.existsByReplyIdAndUser(replyId, userEntity);
     }
 }

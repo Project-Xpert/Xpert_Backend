@@ -9,8 +9,11 @@ import org.example.domain.comment.model.Comment;
 import org.example.domain.comment.model.CommentLike;
 import org.example.domain.comment.spi.QueryCommentLikePort;
 import org.example.domain.user.model.User;
+import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +24,7 @@ public class CommentLikePersistenceAdapter implements QueryCommentLikePort {
     private final CommentLikeJpaRepository commentLikeJpaRepository;
 
     @Override
-    public Boolean existsByCommentAndUser(Comment comment, User user) {
+    public boolean existsByCommentAndUser(Comment comment, User user) {
         return commentLikeJpaRepository.existsById(new CommentLikeId(
                 commentMapper.toEntity(comment),
                 userMapper.toEntity(user)
@@ -36,5 +39,11 @@ public class CommentLikePersistenceAdapter implements QueryCommentLikePort {
     @Override
     public void deleteCommentLike(CommentLike commentLike) {
         commentLikeJpaRepository.delete(commentLikeMapper.toEntity(commentLike));
+    }
+
+    @Override
+    public boolean existsByCommentIdAndUser(UUID commentId, User user) {
+        UserJpaEntity userEntity = userMapper.toEntity(user);
+        return commentLikeJpaRepository.existsByCommentIdAndUser(commentId, userEntity);
     }
 }

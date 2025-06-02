@@ -31,7 +31,7 @@ public class ToggleReplyLikeUseCase {
                 .reply(reply)
                 .build();
 
-        if (checkReplyLikeService.getBooleanOfExistsByReplyAndUser(reply, user)) {
+        if (checkReplyLikeService.getExistsResultByReplyAndUser(reply, user)) {
             commandReplyLikeService.deleteReplyLike(replyLike);
         } else {
             commandReplyLikeService.saveReplyLike(replyLike);

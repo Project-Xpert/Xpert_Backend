@@ -7,13 +7,20 @@ import org.example.domain.reply.spi.QueryReplyLikePort;
 import org.example.domain.user.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class CheckReplyLikeServiceImpl implements CheckReplyLikeService {
     private final QueryReplyLikePort queryReplyLikePort;
 
     @Override
-    public boolean getBooleanOfExistsByReplyAndUser(Reply reply, User user) {
-        return queryReplyLikePort.checkReplyLikeByUserAndReply(user, reply);
+    public boolean getExistsResultByReplyAndUser(Reply reply, User user) {
+        return queryReplyLikePort.existsByUserAndReply(user, reply);
+    }
+
+    @Override
+    public boolean getExistsResultByResultIdAndUser(UUID replyId, User user) {
+        return queryReplyLikePort.existsByReplyIdAndUser(replyId, user);
     }
 }

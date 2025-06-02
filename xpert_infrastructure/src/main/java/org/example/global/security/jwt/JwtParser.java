@@ -46,6 +46,7 @@ public class JwtParser {
 
     public String getHeader(HttpServletRequest request) {
         String token = request.getHeader(jwtProperties.header());
+        System.out.println(token);
 
         if (token != null && !token.isBlank() && token.length() > 7
                 && token.startsWith(jwtProperties.prefix()) && !token.split(" ")[1].isEmpty()) {

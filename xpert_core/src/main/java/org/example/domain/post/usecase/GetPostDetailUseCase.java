@@ -2,6 +2,8 @@ package org.example.domain.post.usecase;
 
 import lombok.RequiredArgsConstructor;
 import org.example.common.service.CurrentUserProvider;
+import org.example.domain.comment.model.Comment;
+import org.example.domain.comment.service.CheckCommentLikeService;
 import org.example.domain.comment.service.GetCommentService;
 import org.example.domain.post.dto.response.GetPostDetailResponseDto;
 import org.example.domain.post.dto.vo.CommentListItemVO;
@@ -11,6 +13,7 @@ import org.example.domain.post.service.CheckPostLikeService;
 import org.example.domain.post.service.GetPostService;
 import org.example.domain.comment.spi.vo.CommentDataWithLikeCntVO;
 import org.example.domain.post.spi.vo.PostDataWithLikeCntVO;
+import org.example.domain.reply.service.CheckReplyLikeService;
 import org.example.domain.reply.spi.vo.ReplyDataWithLikeCntVO;
 import org.example.domain.reply.service.GetReplyService;
 import org.example.domain.user.model.User;
@@ -30,6 +33,8 @@ public class GetPostDetailUseCase {
     private final GetCommentService getCommentService;
     private final GetReplyService getReplyService;
     private final CheckPostLikeService checkPostLikeService;
+    private final CheckCommentLikeService checkCommentLikeService;
+    private final CheckReplyLikeService checkReplyLikeService;
 
     public GetPostDetailResponseDto execute(UUID postId) {
         User user = currentUserProvider.getCurrentUser();
@@ -42,6 +47,16 @@ public class GetPostDetailUseCase {
         Boolean hasLikedPost = checkPostLikeService.getBooleanOfExistsByPostAndUser(post, user);
         List<CommentListItemVO> commentListItems = new ArrayList<>();
         List<ReplyListItemVO> replyListItems = new ArrayList<>();
+
+        for (CommentDataWithLikeCntVO commentData: commentDataList) {
+            boolean hasLikedComment = checkCommentLikeService.getExistsResultByCommentIdAndUser(commentData.commentId(), user);
+            commentListItems.add(CommentListItemVO.of(commentData, hasLikedComment));
+        }
+
+        for (ReplyDataWithLikeCntVO replyData: replyDataList) {
+            boolean hasLikedReply = checkReplyLikeService.getExistsResultByResultIdAndUser(replyData.replyId(), user);
+            replyListItems.add(ReplyListItemVO.of(replyData, hasLikedReply));
+        }
 
         return GetPostDetailResponseDto.of(postData, hasLikedPost, commentListItems, replyListItems);
     }
