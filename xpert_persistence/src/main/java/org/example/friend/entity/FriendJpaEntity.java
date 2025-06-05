@@ -6,8 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.example.user.entity.UserJpaEntity;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.*;
 
 @Getter
 @DynamicInsert
@@ -20,10 +19,16 @@ public class FriendJpaEntity {
     @Id
     @JoinColumn(name = "user1", referencedColumnName = "userId", nullable = false)
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
-    private UserJpaEntity user1;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private UserJpaEntity requester;
 
     @Id
     @JoinColumn(name = "user2", referencedColumnName = "userId", nullable = false)
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
-    private UserJpaEntity user2;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private UserJpaEntity receiver;
+
+    @ColumnDefault("0")
+    @Column(columnDefinition = "tinyInt", nullable = false)
+    private Boolean isAccepted;
 }

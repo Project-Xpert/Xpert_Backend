@@ -10,7 +10,9 @@ import org.example.domain.user.model.User;
 @Builder
 public class Friend {
 
-    private User user1;
+    private User requester;
 
-    private User user2;
+    private User receiver;
+
+    private Boolean isAccepted;
 }

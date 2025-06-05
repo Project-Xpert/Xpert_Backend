@@ -12,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class FriendId implements Serializable {
 
-    private UserJpaEntity user1;
+    private UserJpaEntity requester;
 
-    private UserJpaEntity user2;
+    private UserJpaEntity receiver;
 }

@@ -23,8 +23,9 @@ public class FriendMapper implements GenericMapper<Friend, FriendJpaEntity> {
         FriendJpaEntity friendEntity = entity.get();
 
         return Optional.of(Friend.builder()
-                .user1(userMapper.toDomain(Optional.of(friendEntity.getUser1())).get())
-                .user2(userMapper.toDomain(Optional.of(friendEntity.getUser2())).get())
+                .requester(userMapper.toDomain(Optional.of(friendEntity.getRequester())).get())
+                .receiver(userMapper.toDomain(Optional.of(friendEntity.getReceiver())).get())
+                .isAccepted(friendEntity.getIsAccepted())
                 .build()
         );
     }
@@ -32,8 +33,9 @@ public class FriendMapper implements GenericMapper<Friend, FriendJpaEntity> {
     @Override
     public FriendJpaEntity toEntity(Friend domain) {
         return new FriendJpaEntity(
-                userMapper.toEntity(domain.getUser1()),
-                userMapper.toEntity(domain.getUser2())
+                userMapper.toEntity(domain.getRequester()),
+                userMapper.toEntity(domain.getReceiver()),
+                domain.getIsAccepted()
         );
     }
 }
