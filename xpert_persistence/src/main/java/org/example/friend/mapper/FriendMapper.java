@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.example.GenericMapper;
 import org.example.domain.friend.modal.Friend;
 import org.example.friend.entity.FriendJpaEntity;
+import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
+import org.example.user.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FriendMapper implements GenericMapper<Friend, FriendJpaEntity> {
     private final UserMapper userMapper;
+    private final UserJpaRepository userJpaRepository;
 
     @Override
     public Optional<Friend> toDomain(Optional<FriendJpaEntity> entity) {
@@ -32,9 +35,12 @@ public class FriendMapper implements GenericMapper<Friend, FriendJpaEntity> {
 
     @Override
     public FriendJpaEntity toEntity(Friend domain) {
+        UserJpaEntity requesterEntity = userJpaRepository.findById(domain.getRequester().getUserId()).get();
+        UserJpaEntity receiverEntity = userJpaRepository.findById(domain.getReceiver().getUserId()).get();
+
         return new FriendJpaEntity(
-                userMapper.toEntity(domain.getRequester()),
-                userMapper.toEntity(domain.getReceiver()),
+                requesterEntity,
+                receiverEntity,
                 domain.getIsAccepted()
         );
     }
