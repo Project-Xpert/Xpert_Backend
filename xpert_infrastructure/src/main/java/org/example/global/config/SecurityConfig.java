@@ -88,7 +88,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/reply/like/{replyId}").authenticated();
 
                     authorization
-                        .requestMatchers(HttpMethod.POST, "/friend/{friendId}").authenticated();
+                        .requestMatchers(HttpMethod.POST, "/friend/{friendId}").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/friend/{friendId}").authenticated();
 
                     authorization
                         .anyRequest().denyAll();

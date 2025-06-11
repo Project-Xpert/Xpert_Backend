@@ -5,11 +5,14 @@ import org.example.domain.friend.modal.Friend;
 import org.example.domain.friend.spi.QueryFriendPort;
 import org.example.domain.user.model.User;
 import org.example.friend.entity.FriendId;
+import org.example.friend.entity.FriendJpaEntity;
 import org.example.friend.mapper.FriendMapper;
 import org.example.friend.repository.FriendJpaRepository;
 import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -24,6 +27,11 @@ public class FriendPersistenceAdapter implements QueryFriendPort {
     }
 
     @Override
+    public void deleteFriend(Friend friend) {
+        friendJpaRepository.delete(friendMapper.toEntity(friend));
+    }
+
+    @Override
     public boolean checkFriendExists(User requester, User receiver) {
         UserJpaEntity requesterEntity = userMapper.toEntity(requester);
         UserJpaEntity receiverEntity = userMapper.toEntity(receiver);
@@ -32,6 +40,16 @@ public class FriendPersistenceAdapter implements QueryFriendPort {
             new FriendId(requesterEntity, receiverEntity)
         ) || friendJpaRepository.existsById(
             new FriendId(receiverEntity, requesterEntity)
+        );
+    }
+
+    @Override
+    public Optional<Friend> getFriendByRequesterAndReceiver(User requester, User receiver) {
+        UserJpaEntity requesterEntity = userMapper.toEntity(requester);
+        UserJpaEntity receiverEntity = userMapper.toEntity(receiver);
+
+        return friendMapper.toDomain(
+                friendJpaRepository.findByRequesterAndReceiver(requesterEntity, receiverEntity)
         );
     }
 }

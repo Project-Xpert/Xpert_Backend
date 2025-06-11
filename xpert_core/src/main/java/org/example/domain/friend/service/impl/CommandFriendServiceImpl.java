@@ -15,4 +15,9 @@ public class CommandFriendServiceImpl implements CommandFriendService {
     public void saveFriend(Friend friend) {
         queryFriendPort.saveFriend(friend);
     }
+
+    @Override
+    public void deleteFriend(Friend friend) {
+        queryFriendPort.deleteFriend(friend);
+    }
 }

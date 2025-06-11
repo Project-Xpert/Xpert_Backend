@@ -5,4 +5,6 @@ import org.example.domain.friend.modal.Friend;
 public interface CommandFriendService {
 
     void saveFriend(Friend friend);
+
+    void deleteFriend(Friend friend);
 }
