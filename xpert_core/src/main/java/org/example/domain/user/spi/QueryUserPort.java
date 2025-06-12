@@ -1,5 +1,6 @@
 package org.example.domain.user.spi;
 
+import org.example.domain.friend.spi.vo.AddFriendListItemVO;
 import org.example.domain.user.model.User;
 
 import java.util.List;
@@ -15,5 +16,5 @@ public interface QueryUserPort {
 
     void save(User user);
 
-    List<User> getNonFriendUsersByUserAndKeyword(User user, String keyword);
+    List<AddFriendListItemVO> getFriendAddDataByUserAndKeyword(User user, String keyword);
 }

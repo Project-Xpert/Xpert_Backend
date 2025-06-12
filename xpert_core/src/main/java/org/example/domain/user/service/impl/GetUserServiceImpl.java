@@ -1,6 +1,7 @@
 package org.example.domain.user.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.friend.spi.vo.AddFriendListItemVO;
 import org.example.domain.user.exception.UserNotFoundException;
 import org.example.domain.user.model.User;
 import org.example.domain.user.service.GetUserService;
@@ -22,7 +23,7 @@ public class GetUserServiceImpl implements GetUserService {
     }
 
     @Override
-    public List<User> getNonFriendUsersByUserAndKeyword(User user, String keyword) {
-        return queryUserPort.getNonFriendUsersByUserAndKeyword(user, keyword);
+    public List<AddFriendListItemVO> getFriendAddDataByUserAndKeyword(User user, String keyword) {
+        return queryUserPort.getFriendAddDataByUserAndKeyword(user, keyword);
     }
 }

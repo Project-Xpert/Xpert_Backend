@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.friend.dto.response.GetNonFriendUsersResponseDto;
 import org.example.domain.friend.usecase.AddFriendUseCase;
 import org.example.domain.friend.usecase.DeleteFriendUseCase;
-import org.example.domain.friend.usecase.GetNonFriendUsersUseCase;
+import org.example.domain.friend.usecase.GetAddFriendListItemUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class FriendWebAdapter {
     private final AddFriendUseCase addFriendUseCase;
     private final DeleteFriendUseCase deleteFriendUseCase;
-    private final GetNonFriendUsersUseCase getNonFriendUsersUseCase;
+    private final GetAddFriendListItemUseCase getAddFriendListItemUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{friendId}")
@@ -29,8 +29,8 @@ public class FriendWebAdapter {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/new-friend")
+    @GetMapping("/new")
     public GetNonFriendUsersResponseDto getFriend(@RequestParam String keyword) {
-        return getNonFriendUsersUseCase.execute(keyword);
+        return getAddFriendListItemUseCase.execute(keyword);
     }
 }

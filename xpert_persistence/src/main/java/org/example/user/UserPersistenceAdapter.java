@@ -1,13 +1,13 @@
 package org.example.user;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.friend.spi.vo.AddFriendListItemVO;
 import org.example.domain.user.model.User;
 import org.example.domain.user.spi.QueryUserPort;
 import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
 import org.example.user.repository.UserJpaRepository;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,11 +43,9 @@ public class UserPersistenceAdapter implements QueryUserPort {
     }
 
     @Override
-    public List<User> getNonFriendUsersByUserAndKeyword(User user, String keyword) {
+    public List<AddFriendListItemVO> getFriendAddDataByUserAndKeyword(User user, String keyword) {
         UserJpaEntity userEntity = userMapper.toEntity(user);
 
-        return userJpaRepository.getNonFriendUsersByUserAndKeyword(userEntity, keyword).stream()
-                .map(entity -> userMapper.toDomain(Optional.of(entity)).get())
-                .toList();
+        return userJpaRepository.getFriendAddDataByUserAndKeyword(userEntity, keyword);
     }
 }
