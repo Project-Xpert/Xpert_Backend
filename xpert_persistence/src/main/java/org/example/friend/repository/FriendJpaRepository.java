@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, FriendId> {
@@ -21,4 +22,12 @@ public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, Fri
         @Param("requester") UserJpaEntity requester,
         @Param("receiver") UserJpaEntity receiver
     );
+
+    @Query("""
+        SELECT u
+        FROM user u INNER JOIN friend f ON u = f.requester
+        WHERE f.receiver = :receiver
+          AND NOT f.isAccepted
+    """)
+    List<UserJpaEntity> getAllRequestersByReceiver(@Param("receiver") UserJpaEntity receiver);
 }

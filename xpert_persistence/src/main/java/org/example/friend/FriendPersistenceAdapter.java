@@ -12,6 +12,7 @@ import org.example.user.entity.UserJpaEntity;
 import org.example.user.mapper.UserMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -29,6 +30,14 @@ public class FriendPersistenceAdapter implements QueryFriendPort {
     @Override
     public void deleteFriend(Friend friend) {
         friendJpaRepository.delete(friendMapper.toEntity(friend));
+    }
+
+    @Override
+    public List<User> getRequestersByReceiver(User receiver) {
+        UserJpaEntity receiverEntity = userMapper.toEntity(receiver);
+        return friendJpaRepository.getAllRequestersByReceiver(receiverEntity).stream()
+                .map(userEntity -> userMapper.toDomain(Optional.of(userEntity)).get())
+                .toList();
     }
 
     @Override

@@ -8,6 +8,8 @@ import org.example.domain.friend.spi.QueryFriendPort;
 import org.example.domain.user.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GetFriendServiceImpl implements GetFriendService {
@@ -17,5 +19,10 @@ public class GetFriendServiceImpl implements GetFriendService {
     public Friend getFriendByRequesterAndReceiver(User requester, User receiver) {
         return queryFriendPort.getFriendByRequesterAndReceiver(requester, receiver)
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
+    }
+
+    @Override
+    public List<User> getRequestersByReceiver(User user) {
+        return queryFriendPort.getRequestersByReceiver(user);
     }
 }

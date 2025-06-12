@@ -90,7 +90,8 @@ public class SecurityConfig {
                     authorization
                         .requestMatchers(HttpMethod.POST, "/friend/{friendId}").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/friend/{friendId}").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/friend/new").authenticated();
+                        .requestMatchers(HttpMethod.GET, "/friend/new").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/friend/request").authenticated();
 
                     authorization
                         .anyRequest().denyAll();
