@@ -2,6 +2,7 @@ package org.example.domain.user.spi;
 
 import org.example.domain.user.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface QueryUserPort {
@@ -13,4 +14,6 @@ public interface QueryUserPort {
     Boolean checkUserExistsByEmail(String email);
 
     void save(User user);
+
+    List<User> getNonFriendUsersByUserAndKeyword(User user, String keyword);
 }

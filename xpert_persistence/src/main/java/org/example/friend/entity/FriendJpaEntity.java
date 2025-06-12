@@ -17,13 +17,13 @@ import org.hibernate.annotations.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FriendJpaEntity {
     @Id
-    @JoinColumn(name = "user1", referencedColumnName = "userId", nullable = false)
+    @JoinColumn(name = "requester", referencedColumnName = "userId", nullable = false)
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity requester;
 
     @Id
-    @JoinColumn(name = "user2", referencedColumnName = "userId", nullable = false)
+    @JoinColumn(name = "receiver", referencedColumnName = "userId", nullable = false)
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private UserJpaEntity receiver;

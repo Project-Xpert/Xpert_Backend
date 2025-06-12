@@ -7,6 +7,8 @@ import org.example.domain.user.service.GetUserService;
 import org.example.domain.user.spi.QueryUserPort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class GetUserServiceImpl implements GetUserService {
@@ -17,5 +19,10 @@ public class GetUserServiceImpl implements GetUserService {
         return queryUserPort.getUserByUserId(userId).orElseThrow(
                 () -> UserNotFoundException.EXCEPTION
         );
+    }
+
+    @Override
+    public List<User> getNonFriendUsersByUserAndKeyword(User user, String keyword) {
+        return queryUserPort.getNonFriendUsersByUserAndKeyword(user, keyword);
     }
 }
