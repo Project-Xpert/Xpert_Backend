@@ -9,11 +9,13 @@ import java.util.Optional;
 public interface QueryFriendPort {
     void saveFriend(Friend friend);
 
-    boolean checkFriendExists(User requester, User receiver);
-
-    Optional<Friend> getFriendByRequesterAndReceiver(User requester, User receiver);
-
     void deleteFriend(Friend friend);
 
+    boolean checkFriendExists(User user1, User user2);
+
+    Optional<Friend> findFriendByUsers(User user1, User user2);
+
     List<User> getRequestersByReceiver(User user);
+
+    Optional<Friend> findFriendByRequesterAndReceiver(User requester, User receiver);
 }

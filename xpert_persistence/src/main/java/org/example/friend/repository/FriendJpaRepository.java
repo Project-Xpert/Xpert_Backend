@@ -15,12 +15,12 @@ public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, Fri
     @Query("""
         SELECT f
         FROM friend f
-        WHERE f.requester = :requester AND f.receiver = :receiver
-           OR f.requester = :receiver AND f.receiver = :requester
+        WHERE f.requester = :user1 AND f.receiver = :user2
+           OR f.requester = :user2 AND f.receiver = :user1
     """)
-    Optional<FriendJpaEntity> findByRequesterAndReceiver(
-        @Param("requester") UserJpaEntity requester,
-        @Param("receiver") UserJpaEntity receiver
+    Optional<FriendJpaEntity> findByUsers(
+        @Param("user1") UserJpaEntity user1,
+        @Param("user2") UserJpaEntity user2
     );
 
     @Query("""

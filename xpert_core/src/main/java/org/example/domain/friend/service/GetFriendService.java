@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface GetFriendService {
 
-    Friend getFriendByRequesterAndReceiver(User requester, User receiver);
+    Friend findFriendsByUsers(User user1, User user2);
 
     List<User> getRequestersByReceiver(User user);
+
+    Friend findFriendsByRequesterAndReceiver(User requester, User receiver);
 }

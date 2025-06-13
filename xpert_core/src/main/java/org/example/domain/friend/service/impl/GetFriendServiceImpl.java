@@ -16,13 +16,19 @@ public class GetFriendServiceImpl implements GetFriendService {
     private final QueryFriendPort queryFriendPort;
 
     @Override
-    public Friend getFriendByRequesterAndReceiver(User requester, User receiver) {
-        return queryFriendPort.getFriendByRequesterAndReceiver(requester, receiver)
+    public Friend findFriendsByUsers(User user1, User user2) {
+        return queryFriendPort.findFriendByUsers(user1, user2)
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
     }
 
     @Override
     public List<User> getRequestersByReceiver(User user) {
         return queryFriendPort.getRequestersByReceiver(user);
+    }
+
+    @Override
+    public Friend findFriendsByRequesterAndReceiver(User requester, User receiver) {
+        return queryFriendPort.findFriendByRequesterAndReceiver(requester, receiver)
+                .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
     }
 }

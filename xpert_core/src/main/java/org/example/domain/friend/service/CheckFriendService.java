@@ -4,5 +4,5 @@ import org.example.domain.user.model.User;
 
 public interface CheckFriendService {
 
-    void checkFriendAlreadyExists(User requester, User receiver);
+    void checkFriendAlreadyExists(User user1, User user2);
 }

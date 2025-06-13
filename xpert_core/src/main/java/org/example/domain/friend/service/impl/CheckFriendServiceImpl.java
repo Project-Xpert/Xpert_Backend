@@ -13,8 +13,8 @@ public class CheckFriendServiceImpl implements CheckFriendService {
     private final QueryFriendPort queryFriendPort;
 
     @Override
-    public void checkFriendAlreadyExists(User requester, User receiver) {
-        if (queryFriendPort.checkFriendExists(requester, receiver)) {
+    public void checkFriendAlreadyExists(User user1, User user2) {
+        if (queryFriendPort.checkFriendExists(user1, user2)) {
             throw FriendAlreadyExistsException.EXCEPTION;
         }
     }

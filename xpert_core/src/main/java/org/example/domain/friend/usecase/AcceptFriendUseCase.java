@@ -13,18 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class DeleteFriendUseCase {
+public class AcceptFriendUseCase {
     private final CurrentUserProvider currentUserProvider;
-    private final CommandFriendService commandFriendService;
-    private final GetFriendService getFriendService;
     private final GetUserService getUserService;
+    private final GetFriendService getFriendService;
+    private final CommandFriendService commandFriendService;
 
-    public void execute(String  userId) {
-        User currentUser = currentUserProvider.getCurrentUser();
-        User targetUser = getUserService.getUserByUserId(userId);
+    public void execute(String userId) {
+        User receiver = currentUserProvider.getCurrentUser();
+        User requester = getUserService.getUserByUserId(userId);
 
-        Friend friend = getFriendService.findFriendsByUsers(currentUser, targetUser);
+        Friend friend = getFriendService.findFriendsByRequesterAndReceiver(requester, receiver);
+        friend.setIsAccepted(true);
 
-        commandFriendService.deleteFriend(friend);
+        commandFriendService.saveFriend(friend);
     }
 }
