@@ -42,4 +42,16 @@ public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, Fri
             @Param("user") UserJpaEntity user,
             @Param("keyword") String keyword
     );
+
+    @Query("""
+        SELECT COUNT(f) > 0
+        FROM friend f
+        WHERE (f.requester = :user1 AND f.receiver = :user2
+           OR f.requester = :user2 AND f.receiver = :user1)
+          AND f.isAccepted
+    """)
+    boolean existsAllowedFriendByUsers(
+            @Param("user1") UserJpaEntity user1,
+            @Param("user2") UserJpaEntity user2
+    );
 }

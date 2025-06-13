@@ -1,6 +1,7 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.friend.dto.response.GetFriendDetailResponseDto;
 import org.example.domain.friend.dto.response.GetFriendListResponseDto;
 import org.example.domain.friend.dto.response.GetFriendRequestersResponseDto;
 import org.example.domain.friend.dto.response.GetNonFriendUsersResponseDto;
@@ -18,6 +19,7 @@ public class FriendWebAdapter {
     private final GetFriendsRequestersUseCase getFriendsRequestersUseCase;
     private final AcceptFriendUseCase acceptFriendUseCase;
     private final GetFriendListUseCase getFriendListUseCase;
+    private final GetFriendDetailUseCase getFriendDetailUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{friendId}")
@@ -53,5 +55,11 @@ public class FriendWebAdapter {
     @GetMapping("/list")
     public GetFriendListResponseDto getFriendList(@RequestParam String keyword) {
         return getFriendListUseCase.execute(keyword);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/detail/{friendId}")
+    public GetFriendDetailResponseDto getFriendDetail(@PathVariable String friendId) {
+        return getFriendDetailUseCase.execute(friendId);
     }
 }

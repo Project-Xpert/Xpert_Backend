@@ -20,4 +20,6 @@ public interface QueryFriendPort {
     Optional<Friend> findFriendByRequesterAndReceiver(User requester, User receiver);
 
     List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword);
+
+    boolean checkAcceptedFriendExists(User user1, User user2);
 }
