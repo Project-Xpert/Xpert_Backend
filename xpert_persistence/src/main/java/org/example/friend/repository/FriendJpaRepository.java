@@ -30,4 +30,16 @@ public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, Fri
           AND NOT f.isAccepted
     """)
     List<UserJpaEntity> getAllRequestersByReceiver(@Param("receiver") UserJpaEntity receiver);
+
+    @Query("""
+        SELECT DISTINCT u
+        FROM user u INNER JOIN friend f ON (u = f.requester OR u = f.receiver)
+        WHERE (f.receiver = :user OR f.requester = :user) AND f.isAccepted AND u != :user
+          AND (u.userId LIKE CONCAT('%', :keyword, '%')
+          OR u.username LIKE CONCAT('%', :keyword, '%'))
+    """)
+    List<UserJpaEntity> findAcceptedFriendUsersByUserByKeyword(
+            @Param("user") UserJpaEntity user,
+            @Param("keyword") String keyword
+    );
 }

@@ -31,4 +31,9 @@ public class GetFriendServiceImpl implements GetFriendService {
         return queryFriendPort.findFriendByRequesterAndReceiver(requester, receiver)
                 .orElseThrow(() -> FriendNotFoundException.EXCEPTION);
     }
+
+    @Override
+    public List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword) {
+        return queryFriendPort.findAcceptedFriendUsersByUserByKeyword(user, keyword);
+    }
 }

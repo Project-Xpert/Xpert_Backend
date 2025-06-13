@@ -52,6 +52,15 @@ public class FriendPersistenceAdapter implements QueryFriendPort {
     }
 
     @Override
+    public List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword) {
+        UserJpaEntity userEntity = userMapper.toEntity(user);
+
+        return friendJpaRepository.findAcceptedFriendUsersByUserByKeyword(userEntity, keyword).stream()
+                .map(friendEntity -> userMapper.toDomain(Optional.of(friendEntity)).get())
+                .toList();
+    }
+
+    @Override
     public boolean checkFriendExists(User user1, User user2) {
         UserJpaEntity user1Entity = userMapper.toEntity(user1);
         UserJpaEntity user2Entity = userMapper.toEntity(user2);

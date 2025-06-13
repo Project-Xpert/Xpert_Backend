@@ -18,4 +18,6 @@ public interface QueryFriendPort {
     List<User> getRequestersByReceiver(User user);
 
     Optional<Friend> findFriendByRequesterAndReceiver(User requester, User receiver);
+
+    List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword);
 }

@@ -12,4 +12,6 @@ public interface GetFriendService {
     List<User> getRequestersByReceiver(User user);
 
     Friend findFriendsByRequesterAndReceiver(User requester, User receiver);
+
+    List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword);
 }
