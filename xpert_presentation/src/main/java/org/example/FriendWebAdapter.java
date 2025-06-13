@@ -1,12 +1,14 @@
 package org.example;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.friend.dto.request.SendMoneyRequestDto;
 import org.example.domain.friend.dto.response.GetFriendDetailResponseDto;
 import org.example.domain.friend.dto.response.GetFriendListResponseDto;
 import org.example.domain.friend.dto.response.GetFriendRequestersResponseDto;
 import org.example.domain.friend.dto.response.GetNonFriendUsersResponseDto;
 import org.example.domain.friend.usecase.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,6 +22,7 @@ public class FriendWebAdapter {
     private final AcceptFriendUseCase acceptFriendUseCase;
     private final GetFriendListUseCase getFriendListUseCase;
     private final GetFriendDetailUseCase getFriendDetailUseCase;
+    private final SendMoneyUseCase sendMoneyUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{friendId}")
@@ -61,5 +64,11 @@ public class FriendWebAdapter {
     @GetMapping("/detail/{friendId}")
     public GetFriendDetailResponseDto getFriendDetail(@PathVariable String friendId) {
         return getFriendDetailUseCase.execute(friendId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PatchMapping("/money/{friendId}")
+    public void sendMoney(@PathVariable String friendId, @Validated @RequestBody SendMoneyRequestDto request) {
+        sendMoneyUseCase.execute(friendId, request);
     }
 }
