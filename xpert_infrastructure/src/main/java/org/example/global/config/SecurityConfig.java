@@ -93,6 +93,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/friend/new").authenticated()
                         .requestMatchers(HttpMethod.GET, "/friend/request").authenticated()
                         .requestMatchers(HttpMethod.GET, "/friend/list").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/friend/ranking").authenticated()
                         .requestMatchers(HttpMethod.GET, "/friend/detail/{friendId}").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/friend/{friendId}").authenticated()
                         .requestMatchers(HttpMethod.PATCH, "/friend/money/{friendId}").authenticated();

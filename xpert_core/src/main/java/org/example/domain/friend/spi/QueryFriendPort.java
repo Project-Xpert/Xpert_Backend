@@ -22,4 +22,6 @@ public interface QueryFriendPort {
     List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword);
 
     boolean checkAcceptedFriendExists(User user1, User user2);
+
+    List<User> getRankingByUser(User user);
 }

@@ -1,5 +1,6 @@
 package org.example.friend.repository;
 
+import org.example.domain.user.model.User;
 import org.example.friend.entity.FriendId;
 import org.example.friend.entity.FriendJpaEntity;
 import org.example.user.entity.UserJpaEntity;
@@ -54,4 +55,12 @@ public interface FriendJpaRepository extends CrudRepository<FriendJpaEntity, Fri
             @Param("user1") UserJpaEntity user1,
             @Param("user2") UserJpaEntity user2
     );
+
+    @Query("""
+        SELECT DISTINCT u
+        FROM user u INNER JOIN friend f ON (f.receiver = u OR f.requester = u)
+        WHERE f.isAccepted AND (f.receiver = :user OR f.requester = :user)
+        ORDER BY u.money DESC
+    """)
+    List<UserJpaEntity> getRankingByUser(@Param("user") UserJpaEntity user);
 }

@@ -2,10 +2,7 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.friend.dto.request.SendMoneyRequestDto;
-import org.example.domain.friend.dto.response.GetFriendDetailResponseDto;
-import org.example.domain.friend.dto.response.GetFriendListResponseDto;
-import org.example.domain.friend.dto.response.GetFriendRequestersResponseDto;
-import org.example.domain.friend.dto.response.GetNonFriendUsersResponseDto;
+import org.example.domain.friend.dto.response.*;
 import org.example.domain.friend.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +20,7 @@ public class FriendWebAdapter {
     private final GetFriendListUseCase getFriendListUseCase;
     private final GetFriendDetailUseCase getFriendDetailUseCase;
     private final SendMoneyUseCase sendMoneyUseCase;
+    private final GetRankingUseCase getRankingUseCase;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{friendId}")
@@ -70,5 +68,11 @@ public class FriendWebAdapter {
     @PatchMapping("/money/{friendId}")
     public void sendMoney(@PathVariable String friendId, @Validated @RequestBody SendMoneyRequestDto request) {
         sendMoneyUseCase.execute(friendId, request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/ranking")
+    public GetFriendRankingResponseDto getRanking() {
+        return getRankingUseCase.execute();
     }
 }

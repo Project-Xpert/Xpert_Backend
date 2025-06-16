@@ -36,4 +36,9 @@ public class GetFriendServiceImpl implements GetFriendService {
     public List<User> findAcceptedFriendUsersByUserByKeyword(User user, String keyword) {
         return queryFriendPort.findAcceptedFriendUsersByUserByKeyword(user, keyword);
     }
+
+    @Override
+    public List<User> getFriendUsersRankingByUser(User user) {
+        return queryFriendPort.getRankingByUser(user);
+    }
 }
