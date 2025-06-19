@@ -19,4 +19,6 @@ public interface QueryFxDataPort {
     List<FxDataWithRangeVO> getNewestFxData();
 
     Optional<FxData> getNewestFxDataByFxType(FxType fxType);
+
+    int getTodayDollarPrice();
 }

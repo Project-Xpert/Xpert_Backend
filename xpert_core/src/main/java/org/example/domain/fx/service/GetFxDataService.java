@@ -14,4 +14,6 @@ public interface GetFxDataService {
     List<FxDataWithRangeVO> getNewestFxData();
 
     FxData getNewestFxDataByFxType(FxType fxType);
+
+    int getTodayDollarPrice();
 }

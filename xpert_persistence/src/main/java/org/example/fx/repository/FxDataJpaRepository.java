@@ -33,4 +33,13 @@ public interface FxDataJpaRepository extends CrudRepository<FxDataJpaEntity, FxD
         LIMIT 1
     """)
     Optional<FxDataJpaEntity> getNewestFxDataByFxType(@Param("fxType") FxType fxType);
+
+    @Query("""
+        SELECT fd.price
+        FROM fx_data fd
+        WHERE fd.type = 'USD'
+        ORDER BY fd.date DESC
+        LIMIT 1
+    """)
+    int getTodayDollarPrice();
 }

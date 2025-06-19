@@ -33,4 +33,9 @@ public class GetFxDataServiceImpl implements GetFxDataService {
         return queryFxDataPort.getNewestFxDataByFxType(fxType)
                 .orElseThrow(() -> FXDataNotFoundException.EXCEPTION);
     }
+
+    @Override
+    public int getTodayDollarPrice() {
+        return queryFxDataPort.getTodayDollarPrice();
+    }
 }

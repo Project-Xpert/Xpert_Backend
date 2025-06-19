@@ -56,4 +56,9 @@ public class FxDataPersistenceAdapter implements QueryFxDataPort {
                 fxDataJpaRepository.getNewestFxDataByFxType(fxType)
         );
     }
+
+    @Override
+    public int getTodayDollarPrice() {
+        return fxDataJpaRepository.getTodayDollarPrice();
+    }
 }
