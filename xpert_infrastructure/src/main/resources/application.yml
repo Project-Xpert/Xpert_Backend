@@ -62,3 +62,5 @@ openAPI:
     auth_key: ${KR_EXPORT_IMPORT_BANK_AUTH_KEY}
   kr_financial_supervisory_service:
     auth_key: ${KR_FINANCIAL_SUPERVISORY_SERVICE_KEY}
+  finnhub:
+    auth_key: ${FINNHUB_AUTH_KEY}

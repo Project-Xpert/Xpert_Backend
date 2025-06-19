@@ -8,7 +8,6 @@ import org.example.common.openAPI.fx.vo.FXItemVO;
 import org.example.global.thirdparty.openAPI.GenericDtoMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.ClientResponse;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.ArrayList;
 import java.util.List;
