@@ -1,8 +1,12 @@
 package org.example.stock.repository;
 
+import org.example.domain.stock.spi.vo.StockListItemVO;
 import org.example.stock.entity.StockJpaEntity;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -13,4 +17,35 @@ public interface StockJpaRepository extends CrudRepository<StockJpaEntity, Strin
         FROM stock s
     """)
     List<StockJpaEntity> findAllStocks();
+
+    @Query("""
+        SELECT NEW org.example.domain.stock.spi.vo.StockListItemVO(
+            s.stockCode,
+            s.stockName,
+            sp.price,
+            sp.percentChange,
+            false
+        )
+        FROM stock s INNER JOIN stock_price sp ON s = sp.stock
+        WHERE s.stockName LIKE CONCAT('%', :keyword, '%')
+           OR s.stockCode LIKE CONCAT('%', :keyword, '%')
+        ORDER BY sp.date DESC
+    """)
+    List<StockListItemVO> searchStocksByKeywordAndOrder(@Param("keyword") String keyword, Pageable pageable);
+
+    @Query("""
+        SELECT NEW org.example.domain.stock.spi.vo.StockListItemVO(
+            s.stockCode,
+            s.stockName,
+            sp.price,
+            sp.percentChange,
+            false
+        )
+        FROM stock s INNER JOIN stock_price sp ON s = sp.stock
+        WHERE s.stockName LIKE CONCAT('%', :keyword, '%')
+           OR s.stockCode LIKE CONCAT('%', :keyword, '%')
+        ORDER BY sp.date DESC, abs(sp.percentChange) DESC
+        LIMIT 60
+    """)
+    List<StockListItemVO> searchStocksByKeywordAndOrderByAbsChangePercent(@Param("keyword") String keyword);
 }

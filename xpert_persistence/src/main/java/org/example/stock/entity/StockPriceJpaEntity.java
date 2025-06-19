@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @DynamicInsert
 @DynamicUpdate
 @IdClass(StockPriceId.class)
-@Entity(name = "stockPrice")
+@Entity(name = "stock_price")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class StockPriceJpaEntity {

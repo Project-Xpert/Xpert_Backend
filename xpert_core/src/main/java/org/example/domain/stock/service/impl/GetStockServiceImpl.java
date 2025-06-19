@@ -1,9 +1,11 @@
 package org.example.domain.stock.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.domain.stock.dto.vo.StockOrderByEnum;
 import org.example.domain.stock.modal.Stock;
 import org.example.domain.stock.service.GetStockService;
 import org.example.domain.stock.spi.QueryStockPort;
+import org.example.domain.stock.spi.vo.StockListItemVO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,5 +18,10 @@ public class GetStockServiceImpl implements GetStockService {
     @Override
     public List<Stock> getStocks() {
         return queryStockPort.getStocks();
+    }
+
+    @Override
+    public List<StockListItemVO> searchStockByKeywordAndOrder(String keyword, StockOrderByEnum criteria) {
+        return queryStockPort.searchStockByKeywordAndOrder(keyword, criteria);
     }
 }
