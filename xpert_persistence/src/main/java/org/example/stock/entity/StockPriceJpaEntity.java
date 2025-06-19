@@ -24,7 +24,7 @@ public class StockPriceJpaEntity {
     @ManyToOne(targetEntity = StockJpaEntity.class, optional = false)
     @JoinColumn(name = "stockCode", referencedColumnName = "stockCode", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private String stockCode;
+    private StockJpaEntity stock;
 
     @Id
     @Column(columnDefinition = "DATE", nullable = false)

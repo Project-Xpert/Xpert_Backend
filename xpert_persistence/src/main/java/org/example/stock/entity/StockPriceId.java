@@ -12,5 +12,5 @@ public class StockPriceId implements Serializable {
 
     private LocalDate date;
 
-    private String stockCode;
+    private StockJpaEntity stockCode;
 }
