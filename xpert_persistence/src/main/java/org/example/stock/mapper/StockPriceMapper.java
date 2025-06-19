@@ -28,6 +28,8 @@ public class StockPriceMapper implements GenericMapper<StockPrice, StockPriceJpa
                 .stock(stock)
                 .date(stockPriceEntity.getDate())
                 .price(stockPriceEntity.getPrice())
+                .priceChange(stockPriceEntity.getPriceChange())
+                .percentChange(stockPriceEntity.getPercentChange())
                 .build()
         );
     }
@@ -35,11 +37,14 @@ public class StockPriceMapper implements GenericMapper<StockPrice, StockPriceJpa
     @Override
     public StockPriceJpaEntity toEntity(StockPrice domain) {
         StockJpaEntity stockEntity = stockJpaRepository.findById(domain.getStock().getStockCode()).get();
+        System.out.println(stockEntity);
 
         return new StockPriceJpaEntity(
                 stockEntity,
                 domain.getDate(),
-                domain.getPrice()
+                domain.getPrice(),
+                domain.getPriceChange(),
+                domain.getPercentChange()
         );
     }
 }

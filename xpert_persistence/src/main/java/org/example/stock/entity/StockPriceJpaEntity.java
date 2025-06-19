@@ -30,6 +30,12 @@ public class StockPriceJpaEntity {
     @Column(columnDefinition = "DATE", nullable = false)
     private LocalDate date;
 
-    @Column(columnDefinition = "INTEGER", nullable = false)
-    private int price;
+    @Column(columnDefinition = "DOUBLE", nullable = false)
+    private double price;
+
+    @Column(columnDefinition = "DOUBLE", nullable = false)
+    private double priceChange;
+
+    @Column(columnDefinition = "DOUBLE", nullable = false)
+    private double percentChange;
 }

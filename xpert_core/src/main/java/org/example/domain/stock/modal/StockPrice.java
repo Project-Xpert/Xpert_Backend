@@ -15,5 +15,9 @@ public class StockPrice {
 
     private LocalDate date;
 
-    private int price;
+    private double price;
+
+    private double priceChange;
+
+    private double percentChange;
 }
