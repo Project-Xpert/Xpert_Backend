@@ -11,4 +11,6 @@ public interface GetStockService {
     List<Stock> getStocks();
 
     List<StockListItemVO> searchStockByKeywordAndOrder(String keyword, StockOrderByEnum criteria);
+
+    Stock getStockByStockCode(String stockCode);
 }

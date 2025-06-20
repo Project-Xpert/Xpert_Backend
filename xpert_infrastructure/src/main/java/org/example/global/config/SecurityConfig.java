@@ -99,7 +99,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PATCH, "/friend/money/{friendId}").authenticated();
 
                     authorization
-                        .requestMatchers(HttpMethod.GET, "/stock/search").authenticated();
+                        .requestMatchers(HttpMethod.GET, "/stock/search").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/stock/detail/{stockCode}").authenticated();
 
                     authorization
                         .anyRequest().denyAll();

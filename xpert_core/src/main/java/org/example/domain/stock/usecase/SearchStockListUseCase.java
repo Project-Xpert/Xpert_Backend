@@ -7,10 +7,12 @@ import org.example.domain.stock.dto.vo.StockOrderByEnum;
 import org.example.domain.stock.service.GetStockService;
 import org.example.domain.stock.spi.vo.StockListItemVO;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class SearchStockListUseCase {
     private final GetStockService getStockService;

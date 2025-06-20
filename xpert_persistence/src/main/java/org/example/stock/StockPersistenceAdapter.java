@@ -46,4 +46,9 @@ public class StockPersistenceAdapter implements QueryStockPort {
             return stockJpaRepository.searchStocksByKeywordAndOrder(keyword, pageable);
         }
     }
+
+    @Override
+    public Optional<Stock> getStockById(String stockCode) {
+        return stockMapper.toDomain(stockJpaRepository.findById(stockCode));
+    }
 }

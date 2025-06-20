@@ -64,3 +64,5 @@ openAPI:
     auth_key: ${KR_FINANCIAL_SUPERVISORY_SERVICE_KEY}
   finnhub:
     auth_key: ${FINNHUB_AUTH_KEY}
+  rapid:
+    auth_key: ${RAPID_AUTH_KEY}
