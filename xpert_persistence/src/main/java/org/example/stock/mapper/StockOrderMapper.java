@@ -29,6 +29,7 @@ public class StockOrderMapper implements GenericMapper<StockOrder, StockOrderJpa
                 .stockCode(stockOrderEntity.getStock().getStockCode())
                 .userId(stockOrderEntity.getUser().getUserId())
                 .price(stockOrderEntity.getPrice())
+                .amount(stockOrderEntity.getAmount())
                 .tradeType(stockOrderEntity.getTradeType())
                 .build());
     }
@@ -43,6 +44,7 @@ public class StockOrderMapper implements GenericMapper<StockOrder, StockOrderJpa
                 stockEntity,
                 userEntity,
                 domain.getPrice(),
+                domain.getAmount(),
                 domain.getTradeType()
         );
     }

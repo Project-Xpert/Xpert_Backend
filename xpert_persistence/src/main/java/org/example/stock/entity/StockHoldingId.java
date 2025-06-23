@@ -3,6 +3,7 @@ package org.example.stock.entity;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.example.user.entity.UserJpaEntity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class StockHoldingId implements Serializable {
 
-    private String user;
+    private UserJpaEntity user;
 
-    private String stock;
+    private StockJpaEntity stock;
 }

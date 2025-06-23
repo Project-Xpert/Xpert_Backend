@@ -100,7 +100,8 @@ public class SecurityConfig {
 
                     authorization
                         .requestMatchers(HttpMethod.GET, "/stock/search").authenticated()
-                        .requestMatchers(HttpMethod.GET, "/stock/detail/{stockCode}").authenticated();
+                        .requestMatchers(HttpMethod.GET, "/stock/detail/{stockCode}").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/stock/buy").authenticated();
 
                     authorization
                         .anyRequest().denyAll();

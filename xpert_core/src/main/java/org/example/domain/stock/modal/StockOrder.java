@@ -18,5 +18,7 @@ public class StockOrder {
 
     private int price;
 
+    private int amount;
+
     private TradeType tradeType;
 }

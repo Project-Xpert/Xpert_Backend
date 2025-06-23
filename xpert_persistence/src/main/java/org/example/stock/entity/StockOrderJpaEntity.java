@@ -31,6 +31,9 @@ public class StockOrderJpaEntity {
     @Column(columnDefinition = "INTEGER", nullable = false)
     private int price;
 
+    @Column(columnDefinition = "INTEGER", nullable = false)
+    private int amount;
+
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private TradeType tradeType;

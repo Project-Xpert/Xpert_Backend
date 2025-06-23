@@ -16,4 +16,13 @@ public class StockHolding {
     private int amount;
 
     private int sumOfBuy;
+
+    public StockHolding marge(StockHolding stockHolding) {
+        return StockHolding.builder()
+                .stockCode(this.stockCode)
+                .userId(this.userId)
+                .amount(this.amount + stockHolding.getAmount())
+                .sumOfBuy(this.sumOfBuy + stockHolding.getSumOfBuy())
+                .build();
+    }
 }
