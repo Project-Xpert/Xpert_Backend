@@ -2,36 +2,31 @@ package org.example.stock.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.example.domain.stock.modal.TradeType;
 import org.example.user.entity.UserJpaEntity;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import java.util.UUID;
-
 @Getter
-@Entity(name = "stock_order")
+@Entity(name = "stock_holding")
+@IdClass(StockHoldingId.class)
 @DynamicInsert
 @DynamicUpdate
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class StockOrderJpaEntity {
+public class StockHoldingJpaEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID orderId;
-
     @ManyToOne(targetEntity = StockJpaEntity.class, optional = false)
     @JoinColumn(name = "stockCode", referencedColumnName = "stockCode", nullable = false)
     private StockJpaEntity stock;
 
+    @Id
     @ManyToOne(targetEntity = UserJpaEntity.class, optional = false)
     @JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false)
     private UserJpaEntity user;
 
-    @Column(columnDefinition = "INTEGER", nullable = false)
-    private int price;
+    @Column(nullable = false, columnDefinition = "INTEGER")
+    private int amount;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(nullable = false)
-    private TradeType tradeType;
+    @Column(nullable = false, columnDefinition = "INTEGER")
+    private int sumOfBuy;
 }
