@@ -15,5 +15,5 @@ public class Stock {
 
     private StockCategory category;
 
-    private String tossStockCode;
+    private String summary;
 }

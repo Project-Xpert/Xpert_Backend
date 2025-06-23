@@ -26,7 +26,6 @@ public class StockJpaEntity {
     @Column(nullable = false)
     private StockCategory category;
 
-    // 토스에서 크롤링 해오기 위한 컬럼
-    @Column(columnDefinition = "CHAR(13)", nullable = false, unique = true)
-    private String tossStockCode;
+    @Column(columnDefinition = "VARCHAR(100)", nullable = false)
+    private String summary;
 }

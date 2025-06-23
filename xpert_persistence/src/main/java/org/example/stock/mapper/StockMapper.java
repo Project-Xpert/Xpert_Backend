@@ -19,7 +19,7 @@ public class StockMapper implements GenericMapper<Stock, StockJpaEntity> {
                 .stockCode(stockEntity.getStockCode())
                 .stockName(stockEntity.getStockName())
                 .category(stockEntity.getCategory())
-                .tossStockCode(stockEntity.getTossStockCode())
+                .summary(stockEntity.getSummary())
                 .build()
         );
     }
@@ -30,7 +30,7 @@ public class StockMapper implements GenericMapper<Stock, StockJpaEntity> {
                 domain.getStockCode(),
                 domain.getStockName(),
                 domain.getCategory(),
-                domain.getTossStockCode()
+                domain.getSummary()
         );
     }
 }
