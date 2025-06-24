@@ -49,4 +49,9 @@ public class StockHoldingPersistenceAdapter implements QueryStockHoldingPort {
                 )
         );
     }
+
+    @Override
+    public void delete(StockHolding stockHolding) {
+        stockHoldingJpaRepository.delete(stockHoldingMapper.toEntity(stockHolding));
+    }
 }

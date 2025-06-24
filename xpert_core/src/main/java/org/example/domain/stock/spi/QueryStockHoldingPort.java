@@ -11,4 +11,6 @@ public interface QueryStockHoldingPort {
     void save(StockHolding stockHolding);
 
     Optional<StockHolding> getStockHoldingByUserIdAndStockCode(String userId, String stockCode);
+
+    void delete(StockHolding stockHolding);
 }

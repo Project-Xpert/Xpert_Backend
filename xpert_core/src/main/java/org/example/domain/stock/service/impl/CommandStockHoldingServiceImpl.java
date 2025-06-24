@@ -1,7 +1,6 @@
 package org.example.domain.stock.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example.domain.stock.modal.Stock;
 import org.example.domain.stock.modal.StockHolding;
 import org.example.domain.stock.service.CheckStockHoldingService;
 import org.example.domain.stock.service.CommandStockHoldingService;
@@ -32,5 +31,16 @@ public class CommandStockHoldingServiceImpl implements CommandStockHoldingServic
         StockHolding mergedHolding = newStock.marge(prevStockHolding);
 
         queryStockHoldingPort.save(mergedHolding);
+    }
+
+    @Override
+    public void sellStock(StockHolding sellStock, int sellCnt) {
+
+        if (sellStock.getAmount() > sellCnt) {
+            sellStock.setAmount(sellStock.getAmount() - sellCnt);
+            queryStockHoldingPort.save(sellStock);
+        } else {
+            queryStockHoldingPort.delete(sellStock);
+        }
     }
 }
