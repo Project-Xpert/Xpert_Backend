@@ -4,12 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.stock.dto.request.BuyStockRequestDto;
 import org.example.domain.stock.dto.request.SellStockRequestDto;
 import org.example.domain.stock.dto.response.GetStockDetailResponseDto;
+import org.example.domain.stock.dto.response.GetStockHoldingResponseDto;
 import org.example.domain.stock.dto.response.SearchStockListResponseDto;
 import org.example.domain.stock.dto.vo.StockOrderByEnum;
-import org.example.domain.stock.usecase.BuyStockUseCase;
-import org.example.domain.stock.usecase.GetStockDetailUseCase;
-import org.example.domain.stock.usecase.SearchStockListUseCase;
-import org.example.domain.stock.usecase.SellStockUseCase;
+import org.example.domain.stock.usecase.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +19,7 @@ public class StockWebAdapter {
     private final GetStockDetailUseCase getStockDetailUseCase;
     private final BuyStockUseCase buyStockUseCase;
     private final SellStockUseCase sellStockUseCase;
+    private final GetStockHoldingUseCase getStockHoldingUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
@@ -44,8 +43,14 @@ public class StockWebAdapter {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/sell")
+    @PutMapping("/sell")
     public void sellStock(@RequestBody SellStockRequestDto request) {
         sellStockUseCase.execute(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/holding/{stockCode}")
+    public GetStockHoldingResponseDto getStockHolding(@PathVariable String stockCode) {
+        return getStockHoldingUseCase.execute(stockCode);
     }
 }
