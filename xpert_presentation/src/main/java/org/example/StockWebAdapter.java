@@ -3,6 +3,7 @@ package org.example;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.stock.dto.request.BuyStockRequestDto;
 import org.example.domain.stock.dto.request.SellStockRequestDto;
+import org.example.domain.stock.dto.response.GetOwnStockListResponseDto;
 import org.example.domain.stock.dto.response.GetStockDetailResponseDto;
 import org.example.domain.stock.dto.response.GetStockHoldingResponseDto;
 import org.example.domain.stock.dto.response.SearchStockListResponseDto;
@@ -20,6 +21,7 @@ public class StockWebAdapter {
     private final BuyStockUseCase buyStockUseCase;
     private final SellStockUseCase sellStockUseCase;
     private final GetStockHoldingUseCase getStockHoldingUseCase;
+    private final GetOwnStockListUseCase getOwnStockListUseCase;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/search")
@@ -52,5 +54,14 @@ public class StockWebAdapter {
     @GetMapping("/holding/{stockCode}")
     public GetStockHoldingResponseDto getStockHolding(@PathVariable String stockCode) {
         return getStockHoldingUseCase.execute(stockCode);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/owned")
+    public GetOwnStockListResponseDto getOwnStockList(
+        @RequestParam("keyword") String keyword,
+        @RequestParam("sort") StockOrderByEnum criteria
+    ) {
+        return getOwnStockListUseCase.execute(keyword, criteria);
     }
 }
