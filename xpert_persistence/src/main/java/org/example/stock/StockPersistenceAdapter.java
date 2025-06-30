@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.domain.stock.dto.vo.StockOrderByEnum;
 import org.example.domain.stock.modal.Stock;
 import org.example.domain.stock.spi.QueryStockPort;
+import org.example.domain.stock.spi.vo.CategoryListItemVO;
 import org.example.domain.stock.spi.vo.StockListItemVO;
 import org.example.stock.mapper.StockMapper;
 import org.example.stock.repository.StockJpaRepository;
@@ -45,6 +46,11 @@ public class StockPersistenceAdapter implements QueryStockPort {
 
             return stockJpaRepository.searchStocksByKeywordAndOrder(keyword, pageable);
         }
+    }
+
+    @Override
+    public List<CategoryListItemVO> getCategoryStockData() {
+        return stockJpaRepository.getCategoryStockData();
     }
 
     @Override
